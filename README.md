@@ -27,4 +27,4 @@ cv2.waitKey(0)
 ### Video
 Kodu koşturdukran sonra elde ettiğimiz yeniden boyutlandırılmış resim aşağıda olup üzerine tıklarsanız ilgili videoyu da izleyebilirsiniz.
 
-[![IMAGE ALT TEXT HERE](figure/gumushane_dusuk_boyut.jpg)](https://www.youtube.com/watch?v=-OiJgg3pnYI)
+[![IMAGE ALT TEXT HERE](figure/Gumushane_dusuk_boyut.jpg)](https://www.youtube.com/watch?v=-OiJgg3pnYI)
