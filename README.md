@@ -35,8 +35,3 @@ cv2.waitKey(0)
 ## Proje 2: Bir Resimi BGR Uzayından Gri Tonlu Hale Dönüştürüp Değişik Eşik Metodlarıyla Binary Hale Getirme
 
 ## Proje 3: Web Kamera Akışının Açılıp Videonun üzerine FPS değerinin Yazılması ve Yüz Tanıma
-
-### Video
-Kodu koşturdukran sonra elde ettiğimiz yeniden boyutlandırılmış resim aşağıda olup üzerine tıklarsanız ilgili videoyu da izleyebilirsiniz.
-
-[![IMAGE ALT TEXT HERE](figure/Gumushane_dusuk_boyut.jpg)](https://www.youtube.com/watch?v=-OiJgg3pnYI)
