@@ -1,9 +1,8 @@
 # YENİ BAŞLAYANLAR İÇİN PYTHON ile OPENCV
 Buradaki projelerimizde Python 3.9.6 ve OpenCV 4.5.3 kullanıyoruz. Bilgisayarınıza Python yüklemek için aşağıdaki videoyu takip edebilirsiniz.</br>
-[![IMAGE ALT TEXT HERE](figure/Gumushane_dusuk_boyut.jpg)](https://youtu.be/QmLXzB3N5pM)</br>
-
+[![IMAGE ALT TEXT HERE](figure/install python.jpg)](https://youtu.be/QmLXzB3N5pM)</br>
 Bilgisayarınıza OpenCV yüklemek için de aşağıdaki iki videoyu izleyebilirsiniz.</br>
-[![IMAGE ALT TEXT HERE](figure/Gumushane_dusuk_boyut.jpg)](https://youtu.be/aavhf3C9SlE)</br>
+[![IMAGE ALT TEXT HERE](figure/opencv python.jpg)](https://youtu.be/aavhf3C9SlE)</br>
 [![IMAGE ALT TEXT HERE](figure/Gumushane_dusuk_boyut.jpg)](https://youtu.be/-OiJgg3pnYI)</br>
 ## Resim Yükleme, Üzerine Yazı Yazma, Yeniden Boyutlandırma ve Kaydetme
 Yani imread, putText, resize ve imwrite fonksiyonlarını kullanacağız.
