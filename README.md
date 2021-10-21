@@ -1,6 +1,8 @@
 # YENİ BAŞLAYANLAR İÇİN PYTHON ile OPENCV
 ## Resim Yükleme, Üzerine Yazı Yazma, Yeniden Boyutlandırma ve Kaydetme
-*load_superimpose_resize_write.py*
+Yani imread, putText, resize ve imwrite fonksiyonlarını kullanacağız.
+
+*imread_puttext_resize_imwrite.py*
 ```
 import cv2
 image = cv2.imread('IMG_20210616_202539.jpg')
