@@ -32,7 +32,7 @@ print('height = %i   width = %i   channels = %i' %(image.shape[0],image.shape[1]
 ```
 
 Aşağıdaki videoyu izleyerek yukarıda anlatılan kodu Jupyter Notebook'da gerçekleyebilirsiniz.
-[![IMAGE ALT TEXT HERE](figure/imread_puttext_resize_imwrite.jpg)](https://youtu.be/6wFsCuEj5JY)
+[![IMAGE ALT TEXT HERE](figure/imread_puttext_resize_imwrite.jpg)](https://youtu.be/2bLhk2sV_jk)
 ## Proje 2: Bir Resmi BGR Uzayından Gri Tonlu Hale Dönüştürüp Değişik Eşik Uygulayarak Binary Hale Getirme
 
 ## Proje 3: Web Kamera Akışının Açılıp Videonun üzerine FPS değerinin Yazılması ve Yüz Tanıma
