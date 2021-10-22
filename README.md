@@ -17,8 +17,10 @@ Bu kodda OpenCV kütüphanesinin *imread*, *putText*, *resize* ve *imwrite* fonk
 ```
 import cv2
 image = cv2.imread('IMG_20210616_202539.jpg')
-```</br>
-ve burada *type(image)* komutu ile yüklediğimiz resmin tipine bakacak olursak *numpy.ndarray* tipinde bir veri görüyoruz ki bu da bize OpenCV'nin resimleri hafızada tutmak/erişmek için *numpy* kütüphanesi kullandığını gösteriyor. Yüklediğimiz resmin *features* denilen özelliklerine bakmak istediğimizde *dir(image)* yazarız. Karşımıza çıkan özelliklerden birisi de *shape* yani resmin şekli. Aşağıdaki kod resmin yüksekliğini (satır sayısı), genişliğini (sütun sayısı) ve BGR (veya RGB) kanal sayısını bize verip ekrana basıyor.</br>
+```
+
+ve burada *type(image)* komutu ile yüklediğimiz resmin tipine bakacak olursak *numpy.ndarray* tipinde bir veri görüyoruz ki bu da bize OpenCV'nin resimleri hafızada tutmak/erişmek için *numpy* kütüphanesi kullandığını gösteriyor. Yüklediğimiz resmin *features* denilen özelliklerine bakmak istediğimizde *dir(image)* yazarız. Karşımıza çıkan özelliklerden birisi de *shape* yani resmin şekli. Aşağıdaki kod resmin yüksekliğini (satır sayısı), genişliğini (sütun sayısı) ve BGR (veya RGB) kanal sayısını bize verip ekrana basıyor.
+
 ```
 print('height = %i   width = %i   channels = %i' %(image.shape[0],image.shape[1],image.shape[2]))
 ```
