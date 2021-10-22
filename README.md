@@ -7,7 +7,7 @@ bağlantısından ulaşabilirsiniz. Kursa kayıt ücreti $117. Ben bu kursa
 
 https://www.kickstarter.com/projects/opencv/opencv-for-beginners
 
-bağlantısından çok önce kayıt olup $57 ödemiştim.
+bağlantısından çok önce kayıt olup $57 ödemiştim. Sizin bu kursa kaydolmanız zorunlu değil.
 
 Buradaki projelerimizde **Python 3.9.6** ve **OpenCV 4.5.3** kullanıyoruz. Aşağıda açıklamalarını/sonuçlarını gördüğünüz projelerin **py** ve **ipynb** uzantılı (bazen MATLAB ve C++ kodlarını da koyabiliriz ki MATLAB kodlarının uzantısı **m** iken C++ kodlarının uzantısı **cpp** olarak görünecektir) kodları yukarıda **project** isimli dosyada bulabilirsiniz. Bilgisayarınıza Python yüklemek için aşağıdaki resime tıkladığınızda açılan videoyu takip edebilirsiniz.
 
