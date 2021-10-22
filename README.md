@@ -1,4 +1,14 @@
-# YENİ BAŞLAYANLAR İÇİN PYTHON ile OPENCV
+# Yeni Başlayanlar için PYTHON ile OpenCV
+Merhaba arkadaşlar. Bu sayfada **OpenCV**'nin **OpenCV for Beginners** isimli resmi kursunu takip ediyor olacağız. Bu kursa 
+
+https://opencv.org/course-opencv-for-beginners/
+
+bağlantısından ulaşabilirsiniz. Kursa kayıt ücreti $117. Ben bu kursa  
+
+https://www.kickstarter.com/projects/opencv/opencv-for-beginners
+
+bağlantısından çok önce kayıt olup $57 ödemiştim.
+
 Buradaki projelerimizde **Python 3.9.6** ve **OpenCV 4.5.3** kullanıyoruz. Aşağıda açıklamalarını/sonuçlarını gördüğünüz projelerin **py** ve **ipynb** uzantılı (bazen MATLAB ve C++ kodlarını da koyabiliriz ki MATLAB kodlarının uzantısı **m** iken C++ kodlarının uzantısı **cpp** olarak görünecektir) kodları yukarıda **project** isimli dosyada bulabilirsiniz. Bilgisayarınıza Python yüklemek için aşağıdaki resime tıkladığınızda açılan videoyu takip edebilirsiniz.
 
 [![IMAGE ALT TEXT HERE](figure/install-python.jpg)](https://youtu.be/QmLXzB3N5pM)
