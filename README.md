@@ -37,16 +37,17 @@ dir(image)
 komutunu yazarız. Karşımıza çıkan özelliklerden birisi de *shape* yani resmin şekli. Aşağıdaki kod resmin yüksekliğini (satır sayısı), genişliğini (sütun sayısı) ve BGR (veya RGB) kanal sayısını bize verip ekrana basıyor.
 
 ```
-print('height = %i   width = %i   channels = %i' %(image.shape[0],image.shape[1],image.shape[2]))
+print('height = %i   width = %i   channels = %i' %(image.shape[0], image.shape[1], image.shape[2]))
 ```
 
 Aşağıdaki videoyu izleyerek yukarıda anlatılan kodu Jupyter Notebook'da gerçekleyebilirsiniz.
 [![IMAGE ALT TEXT HERE](figure/imread_puttext_resize_imwrite.jpg)](https://youtu.be/2bLhk2sV_jk)
-## Proje 2: Web Kamera
-Videonun üzerine FPS değerinin Yazılması ve Yüz Tanıma. Bir Resmi BGR Uzayından Gri Tonlu Hale Dönüştürüp Değişik Eşik Uygulayarak Binary Hale Getirme.
+## Proje 2: Web Kamerasına Erişim, Renkli Resmin Gri Tonlu ve Binary Hale Getirilmesi ve Görüntüye Filtre Uygulanması
+Video dediğimiz şey ard arda yakalanan resimlerin ekranda görüntülenmesinden başka birşey değil. Burada **FPS** kavramı karşımıza çıkıyor. Yani **Frame per Second**, Türkçesi saniyedeki kare sayısı. Genelde bu değer standart web kameraları için 30. 
 
-## Proje 3: 
+## Proje 3: Yüz Tespit Etme (Face Detection)
 
+## Proje 4: numpy Kütüphanesi Kullanarak Gri Tonlu bir Resim Elde Etme
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
-[2]
+[2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/
