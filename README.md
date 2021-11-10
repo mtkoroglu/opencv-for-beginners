@@ -84,6 +84,10 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
+Buraya kadar olan kodu **web_cam_stream_bgr_gray_bw.py** ve **web_cam_stream_bgr_gray_bw.ipynb** isminde yukarda projeler kısmında ilgili projede bulabilirsiniz. Bu kodun açıklaması için aşağıdaki resime tıklayıp videoyu izleyebilirsiniz.
+
+[![IMAGE ALT TEXT HERE](figure/web_cam_stream_bgr_gray_bw_thumbnail.jpg)](https://youtu.be/6wFsCuEj5JY)
+
 ## Proje 3: Yüz Tespit Etme (Face Detection)
 
 ## Proje 4: numpy Kütüphanesi Kullanarak Gri Tonlu bir Resim Elde Etme
