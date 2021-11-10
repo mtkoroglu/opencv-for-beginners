@@ -111,7 +111,7 @@ bw = gray_to_bw(gray, 60)
 
 Bunun ardından kodu koşturduğumuzda ekranda duraklamalar gördük. Bu yavaşlamanın sebebi bizim yazdığımız **gray_to_bw()** fonksiyonun OpenCV'nin kendi built-in **threshold()** fonksiyonu kadar hızlı (optimal) olmamasıdır. İlgili kodun ismi **web_cam_stream_bgr_gray_user_bw.py**. İlgili videoyu izlemek için aşağıdaki resme tıklayınız.
 
-[![IMAGE ALT TEXT HERE](figure/user_defined_built_in.jpg)](https://youtu.be/kSCDLw6Aa3E)
+[![IMAGE ALT TEXT HERE](figure/user_defined_built_in.jpg)](https://youtu.be/euN1WgKzFiY)
 
 ## Proje 3: Yüz Tespit Etme (Face Detection)
 
