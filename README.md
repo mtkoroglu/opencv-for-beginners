@@ -86,7 +86,7 @@ cv2.destroyAllWindows()
 
 Buraya kadar olan kodu **web_cam_stream_bgr_gray_bw.py** ve **web_cam_stream_bgr_gray_bw.ipynb** isminde yukarda projeler kısmında ilgili projede bulabilirsiniz. Bu kodun açıklaması için aşağıdaki resime tıklayıp videoyu izleyebilirsiniz.
 
-[![IMAGE ALT TEXT HERE](figure/web_cam_stream_bgr_gray_bw_thumbnail.jpg)](https://youtu.be/6wFsCuEj5JY)
+[![IMAGE ALT TEXT HERE](figure/web_cam_stream_bgr_gray_bw_thumbnail.jpg)](https://youtu.be/kSCDLw6Aa3E)
 
 ## Proje 3: Yüz Tespit Etme (Face Detection)
 
