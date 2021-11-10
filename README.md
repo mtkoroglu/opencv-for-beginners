@@ -88,6 +88,31 @@ Buraya kadar olan kodu **web_cam_stream_bgr_gray_bw.py** ve **web_cam_stream_bgr
 
 [![IMAGE ALT TEXT HERE](figure/web_cam_stream_bgr_gray_bw_thumbnail.jpg)](https://youtu.be/kSCDLw6Aa3E)
 
+Yukarıda OpenCV'nin **threshold** hazır fonksiyonunu kullanarak gri tonlu hale getirdiğimiz **gray** isimli resmi siyah beyaz hale getirdik. OpenCV görüntüleri hangi veri tipinde tutuyor, piksellerin şiddet değerleri nedir ve nasıl erişilir gibi konuları anlamak ve de kendi yazdığımız bir kodu OpenCV'nin aynı işi yapan bir fonksiyonu ile hız (optimallik) açısından kıyaslamak için koda aşağıdaki fonksiyonu ekledik
+
+```
+def gray_to_bw(img, T):
+    bwUser = np.zeros_like(img)
+    for i in range(img.shape[0]):
+        for j in range(img.shape[1]):
+            if (img[i][j] <= T):
+                bwUser[i][j] = 0
+            else:
+                bwUser[i][j] = 255
+    return bwUser
+```
+
+ve kodda ilgili yeri şöyle güncelledik.
+
+```
+#(T, bw) = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
+bw = gray_to_bw(gray, 60)
+```
+
+Bunun ardından kodu koşturduğumuzda ekranda duraklamalar gördük. Bu yavaşlamanın sebebi bizim yazdığımız **gray_to_bw()** fonksiyonun OpenCV'nin kendi built-in **threshold()** fonksiyonu kadar hızlı (optimal) olmamasıdır. İlgili videoyu izlemek için aşağıdaki resme tıklayınız.
+
+[![IMAGE ALT TEXT HERE](figure/user_defined_built_in.jpg)](https://youtu.be/kSCDLw6Aa3E)
+
 ## Proje 3: Yüz Tespit Etme (Face Detection)
 
 ## Proje 4: numpy Kütüphanesi Kullanarak Gri Tonlu bir Resim Elde Etme
