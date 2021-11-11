@@ -88,7 +88,8 @@ Buraya kadar olan kodu **web_cam_stream_bgr_gray_bw.py** ve **web_cam_stream_bgr
 
 [![IMAGE ALT TEXT HERE](figure/web_cam_stream_bgr_gray_bw_thumbnail.jpg)](https://youtu.be/kSCDLw6Aa3E)
 
-Yukarıda OpenCV'nin **threshold** hazır fonksiyonunu kullanarak gri tonlu hale getirdiğimiz **gray** isimli resmi siyah beyaz hale getirdik. OpenCV görüntüleri hangi veri tipinde tutuyor, piksellerin şiddet değerleri nedir ve nasıl erişilir gibi konuları anlamak ve de kendi yazdığımız bir kodu OpenCV'nin aynı işi yapan bir fonksiyonu ile hız (optimallik) açısından kıyaslamak için koda aşağıdaki fonksiyonu ekledik.
+### OpenCV fonksiyonlarının hız bakımından optimal olması
+Yukarıda OpenCV'nin **threshold** fonksiyonunu kullanarak gri tonlu hale getirdiğimiz **gray** isimli resmi siyah beyaz hale getirmiştik. OpenCV görüntüleri hangi veri tipinde tutuyor, piksellerin şiddet değerleri nedir ve nasıl erişilir gibi konuları anlamak ve de kendi yazdığımız bir fonksiyonu OpenCV'nin aynı işi yapan bir fonksiyonu ile hız (optimallik) açısından kıyaslamak için koda aşağıdaki fonksiyonu ekledik.
 
 ```
 def gray_to_bw(img, T):
@@ -111,18 +112,59 @@ import numpy as np
 satırını ekledik. Daha önceden OpenCV yükleme videolarında sanal ortamımız **opencv-env**'a **numpy** yüklemiş olduğumuzdan bu pakete bir satırla sorunsuz erişebildik. Yoksa sanal odaya yüklememiz gerekecekti. Bu değişikliklerin ardından ana döngümüzde ilgili yeri şöyle güncelledik.
 
 ```
-#(T, bw) = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
+# (T, bw) = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
 bw = gray_to_bw(gray, 60)
 ```
 
-Sonrasında kodu koşturduğumuzda ekranda duraklamalar gördük. Bu yavaşlamanın sebebi bizim yazdığımız **gray_to_bw()** fonksiyonun OpenCV'nin kendi built-in **threshold()** fonksiyonu kadar hızlı (optimal) olmamasıdır. İlgili kodun ismi **web_cam_stream_bgr_gray_user_bw.py**. İlgili videoyu izlemek için aşağıdaki resme tıklayınız.
+Sonrasında kodu koşturduğumuzda ekranda duraklamalar gördük. Bu yavaşlamanın sebebi bizim yazdığımız **gray_to_bw()** fonksiyonun OpenCV'nin kendi built-in **threshold()** fonksiyonu kadar hızlı çalışmamasıdır. İlgili kodun ismi **web_cam_stream_bgr_gray_user_bw.py** ve **web_cam_stream_bgr_gray_user_bw.ipynb**. Videoyu izlemek için aşağıdaki resme tıklayınız.
 
 [![IMAGE ALT TEXT HERE](figure/user_defined_built_in.jpg)](https://youtu.be/euN1WgKzFiY)
+
+### Gürültüyü gidermek için görüntüye filtre uygulanması
+Yukarıda siyah-beyaz resme baktığımızda bazı piksellerin siyah ile beyaz arasında değiştiğini (titreme gibi) görmüştük. Gürültüyü yok etmek için resmi biraz bulandırabiliriz [4]. Bunun için de OpenCV kütüphanesinin **imgproc** isimli ana modülünden **blur()** ve **GaussianBlur()** fonksiyonlarını kullanacağız. Bu modüle bakmışken **median()** fonksiyonuyla medyan filtresine de bakalım. Ayrıca bakabilirsek bir de **bilateralFilter()** komutuyla özel bir Gaussian filtreye de bakalım.
+
+```
+import cv2
+cap = cv2.VideoCapture(1) # cap kelimesi capture manasında
+# kamera başarıyla açıldımı diye kontrol edelim
+if (cap.isOpened() == False):
+    print('Kameraya erişilemedi!')
+else:
+    print('FPS = %i' %cap.get(cv2.CAP_PROP_FPS))
+while (cap.isOpened() == True):
+    ret, frame = cap.read()
+    s = 0.75 # ölçek (scale)
+    dim = (int(s*frame.shape[1]), int(s*frame.shape[0]))
+    frame = cv2.resize(frame, dim, interpolation = cv2.INTER_AREA)
+    filtered = cv2.blur(frame, (7, 7))
+    # filtered = cv2.GaussianBlur(frame, (7,7), 0)
+    # filtered = cv2.medianBlur(frame, 7)
+    gray = cv2.cvtColor(filtered, cv2.COLOR_BGR2GRAY)
+    (T, bw) = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
+    if (ret == True):
+        cv2.imshow('renkli resim', frame)
+        cv2.imshow('filtrelenmis resim', filtered)
+        cv2.imshow('gri tonlu', gray)
+        cv2.imshow('siyah beyaz', bw)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            cv2.imwrite('BGR.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
+            cv2.imwrite('filtered.jpg', filtered, [cv2.IMWRITE_JPEG_QUALITY, 100])
+            cv2.imwrite('gray scale.jpg', gray, [cv2.IMWRITE_JPEG_QUALITY, 100])
+            cv2.imwrite('thresholded.jpg', bw, [cv2.IMWRITE_JPEG_QUALITY, 100])
+            break
+    else:
+        print('Kare yakalanamadı')
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+```
 
 ## Proje 3: Yüz Tespit Etme (Face Detection)
 
 ## Proje 4: numpy Kütüphanesi Kullanarak Gri Tonlu bir Resim Elde Etme
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
-[2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/
-[3] OpenCV Thresholding by Adrian Rosebrock (pyimagesearch) - https://www.pyimagesearch.com/2021/04/28/opencv-thresholding-cv2-threshold/
+[2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
+[3] OpenCV'de Eşikleme (Thresholding) [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/28/opencv-thresholding-cv2-threshold/</br>
+[4] OpenCV'de Görüntü Filtreleme (Bulandırma) [A. Rosebrock, pyimagesearch] - https://www.pyimagesearch.com/2021/04/28/opencv-smoothing-and-blurring/
