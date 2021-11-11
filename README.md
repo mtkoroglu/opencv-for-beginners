@@ -161,10 +161,12 @@ cv2.destroyAllWindows()
 ```
 
 ## Proje 3: Yüz Tespit Etme (Face Detection)
+Haar cascad ile yüz tespiti [5].
 
 ## Proje 4: numpy Kütüphanesi Kullanarak Gri Tonlu bir Resim Elde Etme
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
 [3] OpenCV'de Eşikleme (Thresholding) [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/28/opencv-thresholding-cv2-threshold/</br>
-[4] OpenCV'de Görüntü Filtreleme (Bulandırma) [A. Rosebrock, pyimagesearch] - https://www.pyimagesearch.com/2021/04/28/opencv-smoothing-and-blurring/
+[4] OpenCV'de Görüntü Filtreleme (Bulandırma) [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/28/opencv-smoothing-and-blurring/</br>
+[5] OpenCV'de Haar Cascade ile Yüz Tespiti [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/05/opencv-face-detection-with-haar-cascades/
