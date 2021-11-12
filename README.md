@@ -160,10 +160,14 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
+Yukarıdaki kodun açıklamasını izlemek için aşağıdaki resme tıklayın.
+
+[![IMAGE ALT TEXT HERE](figure/filtering.png)](https://youtu.be/Q0SO2F0b8Hg)
 ## Proje 3: Yüz Tespit Etme (Face Detection)
 OpenCV'de **Haar cascade** metodu ile yüz tespiti [5].
 
 ## Proje 4: numpy Kütüphanesi Kullanarak Gri Tonlu bir Resim Elde Etme
+
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
