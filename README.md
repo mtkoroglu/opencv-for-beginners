@@ -88,8 +88,8 @@ Buraya kadar olan kodu **web_cam_stream_bgr_gray_bw.py** ve **web_cam_stream_bgr
 
 [![IMAGE ALT TEXT HERE](figure/web_cam_stream_bgr_gray_bw_thumbnail.jpg)](https://youtu.be/kSCDLw6Aa3E)
 
-### OpenCV fonksiyonlarının hız bakımından optimal olması
-Yukarıda OpenCV'nin **threshold** fonksiyonunu kullanarak gri tonlu hale getirdiğimiz **gray** isimli resmi siyah beyaz hale getirmiştik. OpenCV görüntüleri hangi veri tipinde tutuyor, piksellerin şiddet değerleri nedir ve nasıl erişilir gibi konuları anlamak ve de kendi yazdığımız bir fonksiyonu OpenCV'nin aynı işi yapan bir fonksiyonu ile hız (optimallik) açısından kıyaslamak için koda aşağıdaki fonksiyonu ekledik.
+### OpenCV fonksiyonlarının hız bakımından "optimal" olması
+Yukarıda OpenCV'nin **threshold** fonksiyonunu kullanarak gri tonlu hale getirdiğimiz **gray** isimli görüntüyü siyah beyaz hale (**bw** isminde) getirmiştik. OpenCV görüntüyü hangi veri tipi olarak bilgisayarın hafızasında tutuyor, piksellerin şiddet değerleri nedir ve bu değerlere nasıl erişilir gibi konuları anlamak ve de kendi yazdığımız bir fonksiyonu OpenCV'nin aynı işi yapan bir fonksiyonu ile hız (optimallik) açısından kıyaslamak için koda aşağıda verilen **gray_to_bw()** fonksiyonunu ekledik. Bu fonksiyon OpenCV'deki **threshold()** fonksiyonu ile aynı işi yapsın.
 
 ```
 def gray_to_bw(img, T):
@@ -103,13 +103,13 @@ def gray_to_bw(img, T):
     return bwUser
 ```
 
-Yukarıda gri tonlu resim boyutunda yeni sıfır piksel değerlerine sahip bir resim oluşturabilmek için **numpy** kütüphanesinden **zeros_like()** komutunu çağırmamız gerekti. Bu yüzden de kodumuzun başına
+Yukarıda gri tonlu görüntüyle aynı boyutta (satır ve sütun sayısı aynı olan) yeni bir resim (bütün piksel değerleri sıfır olan) oluşturabilmek için **numpy** kütüphanesinden **zeros_like()** komutunu çağırmamız gerekti. Bu yüzden de kodumuzun başına
 
 ```
 import numpy as np
 ```
 
-satırını ekledik. Daha önceden OpenCV yükleme videolarında sanal ortamımız **opencv-env**'a **numpy** yüklemiş olduğumuzdan bu pakete bir satırla sorunsuz erişebildik. Yoksa sanal odaya yüklememiz gerekecekti. Bu değişikliklerin ardından ana döngümüzde ilgili yeri şöyle güncelledik.
+satırını ekledik. Daha önceden OpenCV yükleme videolarında sanal ortamımız **opencv-env**'a **numpy** yüklemiş olduğumuzdan bu pakete bir satırla sorunsuz erişebildik. Yoksa sanal odaya ayrıca yüklememiz gerekecekti. Bu değişikliklerin ardından ana döngümüzde ilgili yeri şöyle güncelledik.
 
 ```
 # (T, bw) = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
@@ -121,12 +121,12 @@ Sonrasında kodu koşturduğumuzda ekranda duraklamalar gördük. Bu yavaşlaman
 [![IMAGE ALT TEXT HERE](figure/user_defined_built_in.jpg)](https://youtu.be/euN1WgKzFiY)
 
 ### Gürültüyü gidermek için görüntüye filtre uygulanması
-Yukarıda siyah-beyaz resme baktığımızda bazı piksellerin siyah ile beyaz arasında değiştiğini (titreme gibi) görmüştük. Gürültüyü yok etmek için resmi biraz bulandırabiliriz [4]. Bunun için de OpenCV kütüphanesinin **imgproc** isimli ana modülünden **blur()** ve **GaussianBlur()** fonksiyonlarını kullanacağız. Bu modüle bakmışken **median()** fonksiyonuyla medyan filtresine de bakalım. Ayrıca bakabilirsek bir de **bilateralFilter()** komutuyla özel bir Gaussian filtreye de bakalım.
+Yukarıda siyah-beyaz resme baktığımızda bazı piksellerin siyah ile beyaz arasında değiştiğini (titreme gibi) görmüştük. Gürültüyü yok etmek için resmi biraz bulandırabiliriz [4]. Bunun için de OpenCV kütüphanesinin **imgproc** isimli ana modülünden **blur()** ve **GaussianBlur()** fonksiyonlarını kullanacağız. Bu modüle bakmışken **medianBlur()** fonksiyonuyla medyan filtresine de bakalım. Ayrıca snapshot gibi bazı uygulamalarda kullanılan özel bir Gaussian bulanıklaştırma filtresi olan **bilateralFilter()** komutuna da bakacağız.
 
 ```
 import cv2
 cap = cv2.VideoCapture(1) # cap kelimesi capture manasında
-# kamera başarıyla açıldımı diye kontrol edelim
+# kamera başarıyla açıldı mı diye kontrol edelim
 if (cap.isOpened() == False):
     print('Kameraya erişilemedi!')
 else:
@@ -139,11 +139,12 @@ while (cap.isOpened() == True):
     filtered = cv2.blur(frame, (7, 7))
     # filtered = cv2.GaussianBlur(frame, (7,7), 0)
     # filtered = cv2.medianBlur(frame, 7)
+    # filtered = cv2.bilateralFilter(frame, 11, 61, 39)
     gray = cv2.cvtColor(filtered, cv2.COLOR_BGR2GRAY)
     (T, bw) = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
     if (ret == True):
-        cv2.imshow('renkli resim', frame)
-        cv2.imshow('filtrelenmis resim', filtered)
+        cv2.imshow('renkli', frame)
+        cv2.imshow('filtrelenmis', filtered)
         cv2.imshow('gri tonlu', gray)
         cv2.imshow('siyah beyaz', bw)
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -160,11 +161,11 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
-Yukarıdaki kodun açıklamasını izlemek için aşağıdaki resme tıklayın.
+Yukarıdaki kodun açıklamasını izlemek için aşağıdaki resme tıklayın. Adrian Rosebrock tarafından hazırlanmış ilgili tutorial'ı okumak için [4] nolu kaynağa bakınız.
 
 [![IMAGE ALT TEXT HERE](figure/filtering.png)](https://youtu.be/Q0SO2F0b8Hg)
 ## Proje 3: Yüz Tespit Etme (Face Detection)
-OpenCV'de **Haar cascade** metodu ile yüz tespiti [5].
+OpenCV'de **Haar cascade** metodu ile yüz tespiti yapacağız [5]. 
 
 ## Proje 4: numpy Kütüphanesi Kullanarak Gri Tonlu bir Resim Elde Etme
 
