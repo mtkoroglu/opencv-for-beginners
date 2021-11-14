@@ -18,11 +18,11 @@ Bilgisayarınıza OpenCV yüklemek için de aşağıdaki resimlere tıklandığ�
 [![IMAGE ALT TEXT HERE](figure/opencv-python-resized.jpg)](https://youtu.be/aavhf3C9SlE)
 [![IMAGE ALT TEXT HERE](figure/Gumushane_dusuk_boyut.jpg)](https://youtu.be/-OiJgg3pnYI)
 
-Bilgisayarlarınıza **Python** ve **OpenCV** kurduktan sonra Jupyter Notebook'un içine sanal ortamımız (virtual environment - venv) olan **opencv-env** ismini kayıt etmek (register) için aşağıdaki resme tıklayınca açılan videoyu izleyin. Bu videoda ayrıca Jupyter Notebook kullanarak bir *ipynb* kodunu da bilgisayarımızda koşturmuş olacağız.
+Bilgisayarlarınıza **Python** ve **OpenCV** kurduktan sonra **Jupyter Notebook**'un içine sanal ortamımız (virtual environment - venv) olan **opencv-env** ismini kayıt etmek (register) için aşağıdaki resme tıklayınca açılan videoyu izleyin. Bu videoda ayrıca **Jupyter Notebook** kullanarak bir **ipynb** kodunu da bilgisayarımızda koşturmuş olacağız. Dosyanın uzantısının açık hali **interactive python notebook**, kısa haliyle **ipynb**.
 
 [![IMAGE ALT TEXT HERE](figure/thumbnailLQ.jpg)](https://youtu.be/6wFsCuEj5JY)
 ## Proje 1: Resim Yükleme, Resmin Üzerine Yazı Yazma, Resmi Yeniden Boyutlandırma ve Kaydetme
-Bu egzersizde OpenCV kütüphanesinin **imread**, **putText**, **resize** ve **imwrite** fonksiyonlarını kullanacağız. Resim yüklemek için kullandığımız ilk fonksiyon olan **imread()** argüman olarak resim/fotoğraf ismi kabul ediyor. Yani fonksiyona *string* veri tipinde resmin uzantılı ismini giriş olarak veriyoruz. Mesela burada fotoğrafımızın ismi **IMG_20210616_202539.jpg** olduğundan **imread('IMG_20210616_202539.jpg')** şeklinde fonksiyonunu çağırdığımızda resmi bizim verdiğimiz değişkene yüklüyor. Bu arada gözden kaçırmayın, bütün fonksiyonları her zaman **cv2** anahtar kelimemizin sonuna **nokta** koyup çağırıyoruz, çünkü **cv2** kodda OpenCV kütüphanesini temsil ediyor. Zaten bu yüzden her kodumuzun başında **import cv2** diye bir komutla OpenCV'yi aktif hale getirmiş oluyoruz. Burada yazdıklarımızın kısa bir özeti: Eğer **IMG_20210616_202539.jpg** isimli bir resmi OpenCV kütüphanesi kullanarak Python ile okuyup **image** isminde bir değişkene atamak istiyorsak, o zaman aşağıdaki kodu koşturmalıyız.</br>
+Bu egzersizde OpenCV kütüphanesinden **imread**, **putText**, **resize** ve **imwrite** fonksiyonlarını kullanacağız. Resim yüklemek için kullandığımız ilk fonksiyon olan **imread()** argüman olarak resim/fotoğraf ismi kabul ediyor. Yani fonksiyona *string* veri tipinde resmin uzantılı ismini giriş olarak veriyoruz. Mesela burada fotoğrafımızın ismi **IMG_20210616_202539.jpg** olduğundan **imread('IMG_20210616_202539.jpg')** şeklinde fonksiyonunu çağırdığımızda resmi bizim verdiğimiz değişkene yüklüyor. Bu arada gözden kaçırmayın, bütün fonksiyonları her zaman **cv2** anahtar kelimemizin sonuna **nokta** koyup çağırıyoruz, çünkü **cv2** kodda OpenCV kütüphanesini temsil ediyor. Zaten bu yüzden her kodumuzun başında **import cv2** diye bir komutla OpenCV'yi aktif hale getirmiş oluyoruz. Burada yazdıklarımızın kısa bir özeti: Eğer **IMG_20210616_202539.jpg** isimli bir resmi OpenCV kütüphanesi kullanarak Python ile okuyup **image** isminde bir değişkene atamak istiyorsak, o zaman aşağıdaki kodu koşturmalıyız.</br>
 ```
 import cv2
 image = cv2.imread('IMG_20210616_202539.jpg')
@@ -30,19 +30,19 @@ image = cv2.imread('IMG_20210616_202539.jpg')
 
 ve burada **type(image)** komutu ile yüklediğimiz resmin tipine bakacak olursak **numpy.ndarray** tipinde bir veri görüyoruz ki bu da bize OpenCV'nin resimleri hafızada tutmak/erişmek için **numpy** kütüphanesi kullandığını gösteriyor. Aşağıda dördüncü egzersizde **numpy** kütüphanesi kullanarak kendimiz gri tonun bütün piksel şiddet değerlerini tarayan bir resim oluşturacağız, bu yüzden **numpy** kütüphanesini neden kullandığımızı ve de **numpy.ndarray** yani uzun haliyle **n dimedional array** ne demek anlamak biizm için birazcık önemli. 
 
-Yüklediğimiz resmin **eatures** enilen özelliklerine bakmak istediğimizde 
+Yüklediğimiz resmin **features** denilen özelliklerine bakmak istediğimizde 
 
 ```
 dir(image)
 ```
 
-komutunu yazarız. Karşımıza çıkan özelliklerden birisi de **shape** yani resmin şekli. Aşağıdaki kod resmin yüksekliğini (satır sayısı - height), genişliğini (sütun sayısı - width) ve BGR (veya RGB) kanal sayısını (channels) **print** komutuyla ekrana basıyor.
+komutunu yazarız. Karşımıza çıkan özelliklerden birisi de **shape** yani resmin şekli (bu bizim çok sık kullanacağımız bir özellik). Aşağıdaki kod resmin yüksekliğini (satır sayısı - height), genişliğini (sütun sayısı - width) ve BGR (veya RGB) kanal sayısını (channels) **print** komutuyla ekrana basıyor.
 
 ```
 print('height = %i   width = %i   channels = %i' %(image.shape[0], image.shape[1], image.shape[2]))
 ```
 
-Aşağıdaki videoyu izleyerek yukarıda anlatılan kodu Jupyter Notebook'da gerçekleyebilirsiniz.
+Aşağıdaki videoyu izleyerek yukarıda anlatılan kodu **Jupyter Notebook**'da gerçekleyebilirsiniz.
 [![IMAGE ALT TEXT HERE](figure/imread_puttext_resize_imwrite.jpg)](https://youtu.be/2bLhk2sV_jk)
 ## Proje 2: Web Kamerasına Erişim, Renkli Resmin Gri Tonlu ve Binary Hale Getirilmesi ve Görüntüye Filtre Uygulanması
 Video dediğimiz şey ard arda yakalanan (capture) resimlerin ekranda görüntülenmesinden başka birşey değil. Burada **FPS** kavramı karşımıza çıkıyor. Yani **Frame per Second**, Türkçesi saniyedeki kare sayısı. Genelde bu değer standart web kameraları için 30. OpenCV kullanarak bilgisayarımızın web kamerasını aşağıdaki komutla açabiliriz.
@@ -51,7 +51,7 @@ Video dediğimiz şey ard arda yakalanan (capture) resimlerin ekranda görüntü
 cap = cv2.VideoCapture(0)
 ```
 
-Burada **VideoCapture()** web kamerasına erişmek için yazılmış sınıf (class) ismi - bizim için basit haliyle bir komut. Bu komuta 0 girişini verdik çünkü bilgisayarımızda eğer bir web kamerası varsa o kameraya 0 atanmış. Eğer birden fazla kamera varsa, o zaman argüman olarak 0 değil de 1, 2, ... girebiliriz. Bu arada **VideoCapture** komutunun (aynı zamanda OpenCV kütüphanesinde **videoio** ana modülünde bir sınıf) bize döndürdüğü değişkene biz **cap** dedik. Burada **capture** kelimesinin kısaltması olan **cap** ismini uygun bulduk zira **capture** demek yakalamak demek ki web kamerası da saniyede otuz kez görüntüyü yakalayarak bize video sağlamış oluyor. OpenCV'de **VideoCapture** sınıfı bize web kamerası başarıyla açıldı mı açılmadı mı kontrol etmemiz için bir fonksiyon kullanımımıza sunuyor: **isOpened()**. Yukarıda **VideoCapture()** komutunun bize verdiği **cap** değişkeni üzerinden aşağıdaki gibi kontrol edelim.
+Burada **VideoCapture()** web kamerasına erişmek için yazılmış sınıf (class) ismi - bizim için bir komut. Bu komuta 0 girişini verdik çünkü bilgisayarımızda eğer bir web kamerası varsa o kameraya 0 atanmış. Eğer birden fazla kamera varsa, o zaman argüman olarak 0 değil de 1, 2, ... girebiliriz. Bu arada **VideoCapture** komutunun (aynı zamanda OpenCV kütüphanesinde **videoio** ana modülünde bir sınıf) bize döndürdüğü değişkene biz **cap** dedik. Burada **capture** kelimesinin kısaltması olan **cap** ismini uygun bulduk zira **capture** demek yakalamak demek ki web kamerası da saniyede otuz kez görüntüyü yakalayarak bize video sağlamış oluyor. OpenCV'de **VideoCapture** sınıfı bize web kamerası başarıyla açıldı mı açılmadı mı kontrol etmemiz için bir fonksiyon kullanımımıza sunuyor: **isOpened()**. Yukarıda **VideoCapture()** komutunun bize döndürdüğü **cap** değişkeni üzerinden aşağıdaki gibi kontrol edelim.
 
 ```
 if (cap.isOpened() == False):
