@@ -28,7 +28,9 @@ import cv2
 image = cv2.imread('IMG_20210616_202539.jpg')
 ```
 
-ve burada *type(image)* komutu ile yüklediğimiz resmin tipine bakacak olursak *numpy.ndarray* tipinde bir veri görüyoruz ki bu da bize OpenCV'nin resimleri hafızada tutmak/erişmek için *numpy* kütüphanesi kullandığını gösteriyor. Yüklediğimiz resmin *features* denilen özelliklerine bakmak istediğimizde 
+ve burada **type(image)** komutu ile yüklediğimiz resmin tipine bakacak olursak **numpy.ndarray** tipinde bir veri görüyoruz ki bu da bize OpenCV'nin resimleri hafızada tutmak/erişmek için **numpy** kütüphanesi kullandığını gösteriyor. Aşağıda dördüncü egzersizde **numpy** kütüphanesi kullanarak kendimiz gri tonun bütün piksel şiddet değerlerini tarayan bir resim oluşturacağız, bu yüzden **numpy** kütüphanesini neden kullandığımızı ve de **numpy.ndarray** yani uzun haliyle **n dimedional array** ne demek anlamak biizm için birazcık önemli. 
+
+Yüklediğimiz resmin **eatures** enilen özelliklerine bakmak istediğimizde 
 
 ```
 dir(image)
