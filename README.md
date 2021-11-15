@@ -167,8 +167,45 @@ Yukarıdaki kodun açıklamasını izlemek için aşağıdaki resme tıklayın. 
 
 [![IMAGE ALT TEXT HERE](figure/filtering.png)](https://youtu.be/Q0SO2F0b8Hg)
 ## Proje 3: Yüz Tespit Etme (Face Detection)
-OpenCV'de **Haar cascade** metodu ile yüz tespiti yapacağız [5]. 
+OpenCV'de **Haar cascade** metodu ile yüz tespiti yapacağız [5]. Yazdığımız kod aşağıda.
 
+```
+import cv2
+# haar cascade yüz tanıma metodunu yükle
+print("[BİLGİ] Haar cascade yüz tanıma metodunu yüklüyor...")
+detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+cap = cv2.VideoCapture(1)
+if (not cap.isOpened()):
+    print('Web kamerasına erişimde sorun yaşandı!')
+i = 0
+while (cap.isOpened() == True):
+    ret, frame = cap.read()
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    # yakalanan kare üzerinde yüz tespiti yap
+    rects = detector.detectMultiScale(gray, scaleFactor=1.05, minNeighbors=5, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
+    # yüzü kare içine al
+    for (x, y, w, h) in rects:
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    if ret == True:
+        cv2.imshow('face detection', frame)
+        if cv2.waitKey(1) & 0xFF == ord('s'):
+            imageName = 'face detection %i.jpg' %i
+            cv2.imwrite(imageName, frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
+            print('Resim %s ismiyle kaydedildi.' %imageName)
+            i = i + 1
+        elif cv2.waitKey(1) & 0xFF == ord('q'):
+            print('Güle güle!')
+            break
+        else:
+            continue
+    else:
+        print('Kare yakalanamadı!')
+        break
+cap.release()
+cv2.destroyAllWindows()
+```
+
+[![IMAGE ALT TEXT HERE](figure/bgr_image.jpg)](https://youtu.be/aEHlrkLqD_g)
 ## Proje 4: numpy Kütüphanesi Kullanarak Gri Tonlu bir Resim Elde Etme
 
 ### Referanslar
@@ -176,4 +213,5 @@ OpenCV'de **Haar cascade** metodu ile yüz tespiti yapacağız [5].
 [2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
 [3] OpenCV'de Eşikleme (Thresholding) [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/28/opencv-thresholding-cv2-threshold/</br>
 [4] OpenCV'de Görüntü Filtreleme (Bulandırma) [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/28/opencv-smoothing-and-blurring/</br>
-[5] OpenCV'de **Haar Cascade** metodu ile Yüz Tespiti [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/05/opencv-face-detection-with-haar-cascades/
+[5] OpenCV'de **Haar Cascade** metodu ile Yüz Tespiti [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/05/opencv-face-detection-with-haar-cascades/</br>
+[6] Raspberry Pi ve OpenCV ile Mekatronik Yüz Takibi Projesi [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2019/04/01/pan-tilt-face-tracking-with-a-raspberry-pi-and-opencv/
