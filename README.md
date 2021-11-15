@@ -182,7 +182,8 @@ while (cap.isOpened() == True):
     ret, frame = cap.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # yakalanan kare üzerinde yüz tespiti yap
-    rects = detector.detectMultiScale(gray, scaleFactor=1.05, minNeighbors=5, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
+    rects = detector.detectMultiScale(gray, scaleFactor=1.05, minNeighbors=5, 
+    minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
     # yüzü kare içine al
     for (x, y, w, h) in rects:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
