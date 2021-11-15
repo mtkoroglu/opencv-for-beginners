@@ -206,7 +206,7 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
-[![IMAGE ALT TEXT HERE](figure/bgr_image.jpg)](https://youtu.be/twqV7TOBU3s)
+[![IMAGE ALT TEXT HERE](figure/bgr_image.jpg)](https://www.youtube.com/watch?v=twqV7TOBU3s)
 ## Proje 4: numpy Kütüphanesi Kullanarak Gri Tonlu bir Resim Elde Etme
 
 ### Referanslar
