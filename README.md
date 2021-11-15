@@ -167,17 +167,17 @@ Yukarıdaki kodun açıklamasını izlemek için aşağıdaki resme tıklayın. 
 
 [![IMAGE ALT TEXT HERE](figure/filtering.png)](https://youtu.be/Q0SO2F0b8Hg)
 ## Proje 3: Yüz Tespit Etme (Face Detection)
-OpenCV'de **Haar cascade** metodu ile yüz tespiti yapacağız [5]. Yazdığımız kod aşağıda.
+OpenCV'de **Haar cascade** metodu ile yüz tespiti yapacağız [5]. Adrian ayrıca **Haar Cascade** kullanarak yüz tespiti yaptığı bir projede işin içerisine iki tane servo motorda koyarak mekatronik bir proje yapmış [6]. İsteyenler OpenCV'nin **Haar Cascade** tutorial'ına da göz atabilirler. Yazdığımız kodun tamamı aşağıda.
 
 ```
 import cv2
-# haar cascade yüz tanıma metodunu yükle
+# OpenCV tarafından hazır olarak bize sağlanan Haar Cascade yüz tanıma metodunu yükle
 print("[BİLGİ] Haar cascade yüz tanıma metodunu yüklüyor...")
 detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 cap = cv2.VideoCapture(1)
 if (not cap.isOpened()):
     print('Web kamerasına erişimde sorun yaşandı!')
-i = 0
+count = 0
 while (cap.isOpened() == True):
     ret, frame = cap.read()
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -190,10 +190,10 @@ while (cap.isOpened() == True):
     if ret == True:
         cv2.imshow('face detection', frame)
         if cv2.waitKey(1) & 0xFF == ord('s'):
-            imageName = 'face detection %i.jpg' %i
+            imageName = 'face detection %i.jpg' %count
             cv2.imwrite(imageName, frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
             print('Resim %s ismiyle kaydedildi.' %imageName)
-            i = i + 1
+            count = count + 1
         elif cv2.waitKey(1) & 0xFF == ord('q'):
             print('Güle güle!')
             break
@@ -216,3 +216,4 @@ cv2.destroyAllWindows()
 [4] OpenCV'de Görüntü Filtreleme (Bulandırma) [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/28/opencv-smoothing-and-blurring/</br>
 [5] OpenCV'de **Haar Cascade** metodu ile Yüz Tespiti [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/05/opencv-face-detection-with-haar-cascades/</br>
 [6] Raspberry Pi ve OpenCV ile Mekatronik Yüz Takibi Projesi [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2019/04/01/pan-tilt-face-tracking-with-a-raspberry-pi-and-opencv/
+[7] OpenCV'nin Haar Cascade ile Yüz ve Göz Tespiti tutorial'ı - https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html
