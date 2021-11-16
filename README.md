@@ -208,8 +208,22 @@ cv2.destroyAllWindows()
 
 [![IMAGE ALT TEXT HERE](figure/bgr_image.jpg)](https://www.youtube.com/watch?v=twqV7TOBU3s)
 ## Proje 4: NUMPY Kütüphanesi Kullanarak Gri Uzayın Bütün Tonlarını Tarayan Sentetik Bir Resim Oluşturma
-Bildiğimiz gibi, genelde **imread()** fonksiyonu ile *jpg* veya *png* formatında bir görüntü yüklediğimizde veya **cap = cv2.VideoCapture(0)** komutu ile web kamerasına erişip oradan kare (İng. frame) yakalamaya başlayıp da **imshow()** komutu ile monitörde görüntülediğimizde **renkli** bir resim/video gördük. Bu renkli görüntünün **üç kanal**dan oluştuğunu, OpenCV'nin bu kanallara sırasıyla **B-G-R** dediğini ve açık halinin **Blue-Green-Red** yani **Mavi-Yeşil-Kırmızı** olduğunu söyledik. Her piksel üç ayrı kanal için 0-255 arası bir şiddet (İng. intensity) değerine sahip. Gri tonlu uzaya geçerken bu üç kanalın ağırlıklı ortalaması alınıyor ve tek kanala düşüyor. Yeni oluşan bu tek kanallı resime gri tonlu (İng. gray scale) resim dedik. Artık her bir piksel üç değil tek bir şiddet değerine sahip. Üç kanallı (renkli) resimdekine benzer bir mantıkla gri tonlu resimde de piksel şiddet değeri 0-255 arası bir değer alıyor. Burada 0 siyah renge, 255 de beyaz renge tekabül ederken ara değerler grinin tonlarını oluşturuyor. Mesela 127 değeri tam olarak gri. Burada ilk önce **numpy** kütüphanesini aktif hale getirelim ve 256 sütuna sahip bütün elemanları sıfırdan oluşan bir matris oluşturalım. Oluşturduğumuz matrisin veri tipi **uint8** olmalı çünkü gri tonlu bir görüntünün her bir pikseli bilgisayarın hafızasında sekiz bit yani bir byte yer kaplıyor.
+Bildiğimiz gibi, genelde **imread()** fonksiyonu ile *jpg* veya *png* formatında bir görüntü yüklediğimizde veya **cap = cv2.VideoCapture(0)** komutu ile web kamerasına erişip oradan kare (İng. frame) yakaladığımızda **imshow()** komutu ile monitörde **renkli** bir resim/video gördük. Bu renkli görüntünün **üç kanal**dan oluştuğunu, OpenCV'nin bu kanallara sırasıyla **B-G-R** dediğini ve açık halinin **Blue-Green-Red** yani **Mavi-Yeşil-Kırmızı** olduğunu söyledik. Her piksel üç ayrı kanal için 0-255 arası bir şiddet (İng. intensity) değerine sahip. Gri tonlu uzaya geçerken bu üç kanalın ağırlıklı ortalaması alınıyor ve tek kanala düşüyor. Yeni oluşan bu tek kanallı resime gri tonlu (İng. gray scale) resim dedik. Artık her bir piksel üç değil tek bir şiddet değerine sahip. Üç kanallı (renkli) resimdekine benzer bir mantıkla gri tonlu resimde de piksel şiddet değeri 0-255 arası bir değer alıyor. Burada 0 siyah renge, 255 de beyaz renge tekabül ederken ara değerler grinin tonlarını oluşturuyor. Mesela 127 değeri tam olarak gri. Burada ilk önce **numpy** kütüphanesini aktif hale getirelim ve 256 sütuna sahip bütün elemanları sıfırdan oluşan bir matris oluşturalım. Oluşturduğumuz matrisin veri tipi **uint8** olmalı çünkü gri tonlu bir görüntünün her bir pikseli bilgisayarın hafızasında sekiz bit yani bir byte yer kaplıyor. Aşağıda yazdığımız kodu görebilirsiniz. İlgili videoyu izlemek için aşağıdaki resime tıklayın.
 
+```
+import cv2
+import numpy as np
+r, c = 256, 256
+resim = np.zeros((r, c), np.uint8)
+for i in range(resim.shape[0]):
+    for j in range(resim.shape[1]):
+        resim[i][j] = j
+cv2.imshow('görüntü', resim)
+cv2.imwrite('gri tonlu resim.jpg', resim, [cv2.IMWRITE_JPEG_QUALITY, 100])
+cv2.waitKey(0)
+```
+
+[![IMAGE ALT TEXT HERE](figure/BGR_to_gray.jpg)](https://www.youtube.com/watch?v=twqV7TOBU3s)
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
