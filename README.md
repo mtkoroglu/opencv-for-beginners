@@ -219,7 +219,7 @@ resim = np.zeros((r, c), np.uint8)
 for i in range(resim.shape[0]):
     for j in range(resim.shape[1]):
         resim[i][j] = j
-cv2.imshow('görüntü', resim)
+cv2.imshow('gri tonlu resim', resim)
 cv2.imwrite('gri tonlu resim.jpg', resim, [cv2.IMWRITE_JPEG_QUALITY, 100])
 cv2.waitKey(0)
 ```
