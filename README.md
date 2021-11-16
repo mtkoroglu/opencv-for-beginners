@@ -230,7 +230,7 @@ Kodu koşturduğumuzda aşağıdaki sentetik görüntüyü elde ettik.
 
 İlgili videoyu izlemek için aşağıdaki resime tıklayın.
 
-[![IMAGE ALT TEXT HERE](figure/BGR_to_gray_LQ.jpg)](https://www.youtube.com/watch?v=twqV7TOBU3s)
+[![IMAGE ALT TEXT HERE](figure/BGR_to_gray_LQ.jpg)](https://youtu.be/eMBuYXLO4KI)
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
