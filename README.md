@@ -223,7 +223,7 @@ cv2.imwrite('gri tonlu resim.jpg', resim, [cv2.IMWRITE_JPEG_QUALITY, 100])
 cv2.waitKey(0)
 ```
 
-[![IMAGE ALT TEXT HERE](figure/BGR_to_gray.jpg)](https://www.youtube.com/watch?v=twqV7TOBU3s)
+[![IMAGE ALT TEXT HERE](figure/BGR_to_gray_LQ.jpg)](https://www.youtube.com/watch?v=twqV7TOBU3s)
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
