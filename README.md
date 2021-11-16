@@ -207,7 +207,8 @@ cv2.destroyAllWindows()
 ```
 
 [![IMAGE ALT TEXT HERE](figure/bgr_image.jpg)](https://www.youtube.com/watch?v=twqV7TOBU3s)
-## Proje 4: numpy Kütüphanesi Kullanarak Gri Tonlu bir Resim Elde Etme
+## Proje 4: NUMPY Kütüphanesi Kullanarak Gri Uzayın Bütün Tonlarını Tarayan Sentetik Bir Resim Oluşturma
+Bildiğimiz gibi, genelde **imread()** fonksiyonu ile *jpg* veya *png* formatından bir görüntü yüklediğimizde veya **cap = cv2.VideoCapture(0)** komutu ile web kamerasına erişip oradan kare (İng. frame) yakalamaya başlayıp da **imshow()** komutu ile monitörde görüntülediğimizde **renkli** bir resim/video gördük. Bu renkli görüntünün üç kanaldan oluştuğunu, OpenCV'nin bu kanallara sırasıyla B-G-R dediğini ve açık halinin Blue-Green-Red yani Mavi-Yeşil-Kırmızı olduğunu söyledik. Her piksel üç ayrı kanal için 0-255 arası bir şiddet (İng. intensity) değerine sahip. Gri tonlu uzaya geçerken bu üç kanalın ağırlıklı ortalaması alınıyor ve tek kanala düşüyor. Yeni oluşan bu tek kanallı resime gri tonlu (İng. gray scale) resim dedik. Artık her bir piksel üç değil tek bir şiddet değerine sahip. Üç kanallı renkli resimdekine benzer bir mantıkla grı tonlu resimde de piksel şiddet değeri 0-255 arası bir değer alıyor. Burada 0 siyah renge, 255 de beyaz renge tekabül ederken ara değerler grinin tonlarını oluşturuyor. Mesela 127 değeri tam olarak gri.
 
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
