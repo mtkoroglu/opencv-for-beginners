@@ -195,21 +195,23 @@ import cv2
 # OpenCV tarafından hazır olarak bize sağlanan Haar Cascade yüz tanıma metodunu yükle
 print("[BİLGİ] Haar cascade yüz tanıma metodunu yüklüyor...")
 detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(1) # web kamerasına erişim
 if (not cap.isOpened()):
     print('Web kamerasına erişimde sorun yaşandı!')
-count = 0
+count = 0 # resimleri kaydederken isimlerini sırayla artan şekilde yapmak için kullanacağımız index
 while (cap.isOpened() == True):
-    ret, frame = cap.read()
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    # yakalanan kare üzerinde yüz tespiti yap
+    ret, frame = cap.read() # web kamerasından görüntüyü al
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # renkli uzaydan gri tonlu uzaya geç
+    # yakalanan kare üzerinde yüz tespiti yap. rects değişkeni tespit edilen yüzü içine alan dikdörtgenin 
+    # sol üst (x, y) ve sağ alt (x+w, y+h) noktalarının koordinat bilgileri. Bu bilgiler yüzü dikdörtgen 
+    # içine almamız için yeterli. Burada w harfi width yani yatay genişlik, h ise height yani yükseklik.
     rects = detector.detectMultiScale(gray, scaleFactor=1.05, minNeighbors=5, 
     minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
-    # yüzü kare içine al
+    # yüzü rectangle() komutuyla dikdörtgen içine al
     for (x, y, w, h) in rects:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
     if ret == True:
-        cv2.imshow('face detection', frame)
+        cv2.imshow('yuz tanima', frame)
         if cv2.waitKey(1) & 0xFF == ord('s'):
             imageName = 'face detection %i.jpg' %count
             cv2.imwrite(imageName, frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
@@ -229,22 +231,24 @@ cv2.destroyAllWindows()
 
 [![IMAGE ALT TEXT HERE](figure/bgr_image.jpg)](https://www.youtube.com/watch?v=twqV7TOBU3s)
 ## Proje 4: NUMPY Kütüphanesi Kullanarak Gri Uzayın Bütün Tonlarını Tarayan Sentetik Bir Resim Oluşturma
-Bildiğimiz gibi, genelde **imread()** fonksiyonu ile *jpg* veya *png* formatında bir görüntü yüklediğimizde veya **cap = cv2.VideoCapture(0)** komutu ile web kamerasına erişip oradan kare (İng. frame) yakaladığımızda **imshow()** komutu ile monitörde **renkli** bir resim/video gördük. Bu renkli görüntünün **üç kanal**dan oluştuğunu, OpenCV'nin bu kanallara sırasıyla **B-G-R** dediğini ve açık halinin **Blue-Green-Red** yani **Mavi-Yeşil-Kırmızı** olduğunu söyledik. Her piksel üç ayrı kanal için 0-255 arası bir şiddet (İng. intensity) değerine sahip. Gri tonlu uzaya geçerken bu üç kanalın ağırlıklı ortalaması alınıyor ve tek kanala düşüyor. Yeni oluşan bu tek kanallı resime gri tonlu (İng. gray scale) resim dedik. Artık her bir piksel üç değil tek bir şiddet değerine sahip. Üç kanallı (renkli) resimdekine benzer bir mantıkla gri tonlu resimde de piksel şiddet değeri 0-255 arası bir değer alıyor. Burada 0 siyah renge, 255 de beyaz renge tekabül ederken ara değerler grinin tonlarını oluşturuyor. Mesela 127 değeri tam olarak gri. Burada ilk önce **numpy** kütüphanesini aktif hale getirelim ve 256 sütuna sahip bütün elemanları sıfırdan oluşan bir matris oluşturalım. Oluşturduğumuz matrisin veri tipi **uint8** olmalı çünkü gri tonlu bir görüntünün her bir pikseli bilgisayarın hafızasında sekiz bit yani bir byte yer kaplıyor. Aşağıda yazdığımız kodu görebilirsiniz. 
+OpenCV'de **imread()** fonksiyonu ile *jpg* veya *png* formatında bir görüntü yüklediğimizde veya **cap = cv2.VideoCapture(0)** komutu ile web kamerasına erişip oradan kare (İng. frame) yakaladığımızda **imshow()** komutu ile monitörde **renkli** bir resim/video gördük. Bu renkli görüntünün **üç kanal**dan oluştuğunu, OpenCV'nin bu kanallara sırasıyla **B-G-R** dediğini ve açık halinin **Blue-Green-Red** yani **Mavi-Yeşil-Kırmızı** olduğunu söyledik. Her piksel üç ayrı kanal için 0-255 arası bir şiddet (İng. intensity) değerine sahip. Gri tonlu uzaya geçerken bu üç kanalın ağırlıklı ortalaması alınıyor ve tek kanala düşüyor. Yeni oluşan bu tek kanallı resime gri tonlu (İng. gray scale) resim dedik. Artık her bir piksel üç değil tek bir şiddet değerine sahip. Üç kanallı (renkli) resimdekine benzer bir mantıkla gri tonlu resimde de piksel şiddet değeri 0-255 arası bir değer alıyor. Burada **0** tam sayısı **siyah** renge, **255** de **beyaz** renge tekabül ederken ara değerler grinin tonlarını oluşturuyor. Mesela **127** değeri tam olarak **gri** renk. Yani %50 siyah - %50 beyaz karışımı olan gri. 
+
+Bu egzersizde ilk önce **numpy** kütüphanesini aktif hale getirelim ve 256 sütuna sahip (satır sayısı değişken olabilir) bütün elemanları sıfır olan bir matris oluşturalım. Oluşturduğumuz matrisin veri tipi **uint8** olmalı çünkü gri tonlu bir görüntünün her bir pikseli bilgisayarın hafızasında **sekiz bit** yani **bir byte** yer kaplıyor. Aşağıda yazdığımız kodu görebilirsiniz. 
 
 ```
 import cv2
 import numpy as np
-r, c = 256, 256
-resim = np.zeros((r, c), np.uint8)
-for i in range(resim.shape[0]):
-    for j in range(resim.shape[1]):
-        resim[i][j] = j
+r, c = 256, 256 # satır ve sütun sayısı
+resim = np.zeros((r, c), np.uint8) # r satır c sütundan oluşan elemanları sıfır olan bir matris
+for i in range(resim.shape[0]): # satırları dolaşıyoruz
+    for j in range(resim.shape[1]): # sütunları dolaşıyoruz
+        resim[i][j] = j # i. satır j. sütundaki pksel değerini sütun numarası olan j yapalım
 cv2.imshow('gri tonlu resim', resim)
 cv2.imwrite('gri tonlu resim.jpg', resim, [cv2.IMWRITE_JPEG_QUALITY, 100])
 cv2.waitKey(0)
 ```
 
-Kodu koşturduğumuzda aşağıdaki sentetik görüntüyü elde ettik.
+Kodu koşturduğumuzda aşağıdaki sentetik görüntüyü elde ettik. Resmin ilk sütunundaki piksellerin şiddet değeri 0 olduğundan en sol taraf siyah renkle başlıyor. Sağa doğru gittikçe 0'dan 255'e kadar olan değerleri bir bir tarıyoruz. Böylece geçişlerle beyaz renge kadar gidiyoruz.
 
 <img src="figure/gri_tonlu_resim.jpg" alt="gri tonlu resim" height="256"/>
 
