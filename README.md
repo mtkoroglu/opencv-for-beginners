@@ -119,9 +119,7 @@ def threshold(img, T):
     bwUser = np.zeros_like(img)
     for i in range(img.shape[0]):
         for j in range(img.shape[1]):
-            if (img[i][j] <= T):
-                bwUser[i][j] = 0
-            else:
+            if (img[i][j] > T):
                 bwUser[i][j] = 255
     return bwUser
 ```
