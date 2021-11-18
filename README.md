@@ -34,21 +34,21 @@ ve burada **type(resim)** komutu ile yüklediğimiz resmin tipine bakacak olursa
 Yüklediğimiz resmin **features** denilen özelliklerine bakmak istediğimizde konsola
 
 ```
-dir(image)
+dir(resim)
 ```
 
 komutunu yazarız. Karşımıza çıkan özelliklerden birisi de **shape** yani resmin şekli (bu bizim **çok sık** kullanacağımız bir özellik). Aşağıdaki kod resmin yüksekliğini (satır sayısı - height), genişliğini (sütun sayısı - width) ve BGR (Blue-Green-Red yani Mavi-Yeşil-Kırmızı) kanal sayısını (channels) **print** komutuyla ekrana basıyor.
 
 ```
-print('yükseklik = %i   genişlik = %i   kanal sayısı = %i' %(image.shape[0], image.shape[1], image.shape[2]))
+print('yükseklik = %i   genişlik = %i   kanal sayısı = %i' %(resim.shape[0], resim.shape[1], resim.shape[2]))
 ```
 
 Aşağıdaki videoyu izleyerek yukarıda anlatılan kodu **Jupyter Notebook**'da gerçekleyebilirsiniz.
 [![IMAGE ALT TEXT HERE](figure/imread_puttext_resize_imwrite.jpg)](https://youtu.be/2bLhk2sV_jk)
 
 ```
-import cv2
-resim = cv2.imread('IMG_20210616_202539.jpg')
+import cv2 # OpenCV kütüphanesine erişim
+resim = cv2.imread('IMG_20210616_202539.jpg') # resim yükle
 print('yükseklik = %i   genişlik = %i   kanal sayısı = %i' %(resim.shape[0],resim.shape[1],resim.shape[2]))
 # resmin üzerine yazı yazalım
 font = cv2.FONT_HERSHEY_SIMPLEX # font tipi
@@ -57,13 +57,13 @@ fontScale = 7 # font büyüklüğü
 color = (0, 0, 0) # BGR sırasında yazının renk kodu
 thickness = 12 # yazının kalınlığı
 yaziliResim = cv2.putText(resim, 'Gumushane', org, font, fontScale, color, thickness, cv2.LINE_AA)
-# resmi yeniden boyulandır, dosyaya kaydet ve ekranda görüntüle
+# resmi yeniden boyutlandır, dosyaya kaydet ve ekranda görüntüle
 s = 0.2 # scale - ölçek
 dim = (int(s*resim.shape[1]), int(s*resim.shape[0])) # boyut
 yeniYaziliResim = cv2.resize(yaziliResim, dim, interpolation = cv2.INTER_AREA)
 cv2.imwrite('Gumushane.jpg', yeniYaziliResim, [cv2.IMWRITE_JPEG_QUALITY, 100])
 cv2.imshow("Uzerine yazi yazilmis ve yeniden boyutlandirilmis resim", yeniYaziliResim)
-cv2.waitKey(0)
+cv2.waitKey(0) # klavyede herhangi bir tuşa basana kadar ekranda görüntüle
 ```
 
 ## Proje 2: Web Kamerasına Erişim, Renkli Resmin Gri Tonlu ve Siyah-Beyaz (Binary) Hale Dönüşümü ve Görüntüye Filtre Uygulanması
@@ -112,7 +112,7 @@ Buraya kadar olan kodu **web_cam_stream_bgr_gray_bw.py** ismiyle yukarda projele
 
 [![IMAGE ALT TEXT HERE](figure/web_cam_stream_bgr_gray_bw_thumbnail.jpg)](https://youtu.be/kSCDLw6Aa3E)
 ### OpenCV fonksiyonlarının hız bakımından "optimal" olması
-Yukarıda OpenCV'nin **threshold** fonksiyonunu kullanarak gri tonlu hale getirdiğimiz **gray** isimli görüntüyü siyah beyaz hale (**bw** isminde) getirmiştik. OpenCV görüntüyü hangi veri tipi olarak bilgisayarın hafızasında tutuyor, piksellerin şiddet değerleri nedir ve bu değerlere nasıl erişilir gibi konuları anlamak ve de kendi yazdığımız bir fonksiyonu OpenCV'nin aynı işi yapan bir fonksiyonu ile hız (optimallik) açısından kıyaslamak için kendimiz **threshold()** isminde bir fonksiyonun yazdık. Bu fonksiyonu **cv2.threshold()** diye değil de direk olarak **threshold()** şeklinde çağıracağız.
+Yukarıda OpenCV'nin **threshold** fonksiyonunu kullanarak gri tonlu hale getirdiğimiz **gray** isimli görüntüyü siyah beyaz hale (**bw** isminde) getirmiştik. OpenCV görüntüyü hangi veri tipi olarak bilgisayarın hafızasında tutuyor, piksellerin şiddet değerleri nedir ve bu değerlere nasıl erişilir gibi konuları anlamak ve de kendi yazdığımız bir fonksiyonu OpenCV'nin aynı işi yapan bir fonksiyonu ile hız (optimallik) açısından kıyaslamak için kendimiz **threshold()** isminde bir fonksiyon yazdık. Bu fonksiyonu **cv2.threshold()** diye değil de direk olarak **threshold()** şeklinde çağıracağız.
 
 ```
 def threshold(img, T):
