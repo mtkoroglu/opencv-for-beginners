@@ -66,8 +66,8 @@ cv2.imshow("Uzerine yazi yazilmis ve yeniden boyutlandirilmis resim", yeniYazili
 cv2.waitKey(0)
 ```
 
-## Proje 2: Web Kamerasına Erişim, Renkli Resmin Gri Tonlu ve Binary Hale Getirilmesi ve Görüntüye Filtre Uygulanması
-Video dediğimiz şey ard arda yakalanan (capture) resimlerin ekranda görüntülenmesinden başka birşey değil. Burada **FPS** kavramı karşımıza çıkıyor. Yani **Frame per Second**, Türkçesi saniyedeki kare sayısı. Genelde bu değer standart web kameraları için 30. OpenCV kullanarak bilgisayarımızın web kamerasını aşağıdaki komutla açabiliriz.
+## Proje 2: Web Kamerasına Erişim, Renkli Resmin Gri Tonlu ve Siyah-Beyaz (Binary) Hale Dönüşümü ve Görüntüye Filtre Uygulanması
+Video dediğimiz şey ard arda yakalanan (capture) resimlerin ekranda seri halde görüntülenmesinden başka birşey değil. Burada **FPS** kavramı karşımıza çıkıyor. Yani **Frame per Second**, Türkçesi saniyedeki kare sayısı. Genelde bu değer standart web kameraları için 30. OpenCV kullanarak bilgisayarımızın web kamerasını aşağıdaki komutla açabiliriz.
 
 ```
 cap = cv2.VideoCapture(0)
@@ -82,7 +82,7 @@ else:
     print('Kameranın FPS değeri %i.' %cap.get(cv2.CAP_PROP_FPS))
 ```
 
-Eğer kamera yoksa veya erişimde (veya bağlantıda) bir sıkıntı yaşandıysa o zaman ekrana **Web kamerasına erişimde sorun yaşandı!** yazacağız. Aksi durumda kameradan **kare**ler (İng. **frame**) geliyor olacak ve web kamerasının **FPS** değerini ekrana basalım. Kameraya başarıyla eriştiğimizi kabul ederek devam ediyoruz. Şimdi görüntü sürekli gelmeye devam edeceğinden, sürekli koşacak bir döngü oluşturup bu döngü içine her girişte web kamerasından resmi alıp **frame** isimli bir değişkene atayalım ve ardından döngüden çıkmadan bu yakalanan renkli resimi sırasıyla ilk önce gri tonlu tek kanallı bir resme (**gray** isminde bir değişkene), sonra **eşikleme** (İng. **threholding**) ile **binary** yani siyah-beyaz bir resme (**bw** isminde bir değişkene) çevirelim [3].
+Eğer kamera yoksa veya erişimde (veya bağlantıda) bir sıkıntı yaşandıysa o zaman ekrana **Web kamerasına erişimde sorun yaşandı!** yazılacak. Aksi durumda kameradan **kare**ler (İng. **frame**) sürekli geliyor olacak ve web kamerasının **FPS** değerini ekrana basacağız. Kameraya başarıyla eriştiğimizi kabul ederek devam ediyoruz. Şimdi görüntü sürekli gelmeye devam edeceğinden, web kamerası görüntü verdiği müddetçe aktif olacak bir döngü oluşturup, bu döngü içine her girişte web kamerasından resmi alıp **frame** isimli bir değişkene atayalım ve ardından döngüden çıkmadan bu yakalanan renkli resmi sırasıyla ilk önce gri tonlu tek kanallı bir resme (**gray** isminde bir değişkene), sonra **eşikleme** (İng. **threholding**) ile **binary** yani siyah-beyaz bir resme (**bw** isminde bir değişkene) çevirelim [3].
 
 ```
 while (cap.isOpened() == True):
@@ -93,13 +93,13 @@ while (cap.isOpened() == True):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     (T, bw) = cv2.threshold(gray, 75, 255, cv2.THRESH_BINARY)
     if ret == True:
-        cv2.imshow('BGR image', frame)
-        cv2.imshow('Gray Scale image', gray)
-        cv2.imshow('Thresholded (Binary) image', bw)
+        cv2.imshow('renkli resim', frame)
+        cv2.imshow('gri tonlu resim', gray)
+        cv2.imshow('siyah beyaz resim', bw)
         if cv2.waitKey(1) & 0xFF == ord('q'):
-            cv2.imwrite('BGR webcam image.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
-            cv2.imwrite('BGR webcam image.jpg', gray, [cv2.IMWRITE_JPEG_QUALITY, 100])
-            cv2.imwrite('BGR webcam image.jpg', bw, [cv2.IMWRITE_JPEG_QUALITY, 100])
+            cv2.imwrite('renkli resim.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
+            cv2.imwrite('gri tonlu resim.jpg', gray, [cv2.IMWRITE_JPEG_QUALITY, 100])
+            cv2.imwrite('siyaz beyaz resim.jpg', bw, [cv2.IMWRITE_JPEG_QUALITY, 100])
             break
     else:
         print('Kare yakalanamadı!')
@@ -108,10 +108,9 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
-Buraya kadar olan kodu **web_cam_stream_bgr_gray_bw.py** ve **web_cam_stream_bgr_gray_bw.ipynb** isminde yukarda projeler kısmında ilgili projede bulabilirsiniz. Bu kodun açıklaması için aşağıdaki resime tıklayıp videoyu izleyebilirsiniz.
+Buraya kadar olan kodu **web_cam_stream_bgr_gray_bw.py** isminde yukarda projeler kısmında ilgili projede bulabilirsiniz. Bu kodun açıklaması için aşağıdaki resime tıklayıp videoyu izleyebilirsiniz.
 
 [![IMAGE ALT TEXT HERE](figure/web_cam_stream_bgr_gray_bw_thumbnail.jpg)](https://youtu.be/kSCDLw6Aa3E)
-
 ### OpenCV fonksiyonlarının hız bakımından "optimal" olması
 Yukarıda OpenCV'nin **threshold** fonksiyonunu kullanarak gri tonlu hale getirdiğimiz **gray** isimli görüntüyü siyah beyaz hale (**bw** isminde) getirmiştik. OpenCV görüntüyü hangi veri tipi olarak bilgisayarın hafızasında tutuyor, piksellerin şiddet değerleri nedir ve bu değerlere nasıl erişilir gibi konuları anlamak ve de kendi yazdığımız bir fonksiyonu OpenCV'nin aynı işi yapan bir fonksiyonu ile hız (optimallik) açısından kıyaslamak için koda aşağıda verilen **gray_to_bw()** fonksiyonunu ekledik. Bu fonksiyon OpenCV'deki **threshold()** fonksiyonu ile aynı işi yapsın.
 
