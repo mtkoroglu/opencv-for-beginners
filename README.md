@@ -108,14 +108,14 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
-Buraya kadar olan kodu **web_cam_stream_bgr_gray_bw.py** isminde yukarda projeler kısmında ilgili projede bulabilirsiniz. Bu kodun açıklaması için aşağıdaki resime tıklayıp videoyu izleyebilirsiniz.
+Buraya kadar olan kodu **web_cam_stream_bgr_gray_bw.py** ismiyle yukarda projeler kısmında ilgili projede bulabilirsiniz. Bu kodun açıklaması için aşağıdaki resime tıklayıp videoyu izleyebilirsiniz.
 
 [![IMAGE ALT TEXT HERE](figure/web_cam_stream_bgr_gray_bw_thumbnail.jpg)](https://youtu.be/kSCDLw6Aa3E)
 ### OpenCV fonksiyonlarının hız bakımından "optimal" olması
-Yukarıda OpenCV'nin **threshold** fonksiyonunu kullanarak gri tonlu hale getirdiğimiz **gray** isimli görüntüyü siyah beyaz hale (**bw** isminde) getirmiştik. OpenCV görüntüyü hangi veri tipi olarak bilgisayarın hafızasında tutuyor, piksellerin şiddet değerleri nedir ve bu değerlere nasıl erişilir gibi konuları anlamak ve de kendi yazdığımız bir fonksiyonu OpenCV'nin aynı işi yapan bir fonksiyonu ile hız (optimallik) açısından kıyaslamak için koda aşağıda verilen **gray_to_bw()** fonksiyonunu ekledik. Bu fonksiyon OpenCV'deki **threshold()** fonksiyonu ile aynı işi yapsın.
+Yukarıda OpenCV'nin **threshold** fonksiyonunu kullanarak gri tonlu hale getirdiğimiz **gray** isimli görüntüyü siyah beyaz hale (**bw** isminde) getirmiştik. OpenCV görüntüyü hangi veri tipi olarak bilgisayarın hafızasında tutuyor, piksellerin şiddet değerleri nedir ve bu değerlere nasıl erişilir gibi konuları anlamak ve de kendi yazdığımız bir fonksiyonu OpenCV'nin aynı işi yapan bir fonksiyonu ile hız (optimallik) açısından kıyaslamak için kendimiz **threshold()** isminde bir fonksiyonun yazdık. Bu fonksiyonu **cv2.threshold()** diye değil de direk olarak **threshold()** şeklinde çağıracağız.
 
 ```
-def gray_to_bw(img, T):
+def threshold(img, T):
     bwUser = np.zeros_like(img)
     for i in range(img.shape[0]):
         for j in range(img.shape[1]):
@@ -136,10 +136,10 @@ satırını ekledik. Daha önceden OpenCV yükleme videolarında sanal ortamım�
 
 ```
 # (T, bw) = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY)
-bw = gray_to_bw(gray, 60)
+bw = threshold(gray, 60)
 ```
 
-Sonrasında kodu koşturduğumuzda ekranda duraklamalar gördük. Bu yavaşlamanın sebebi bizim yazdığımız **gray_to_bw()** fonksiyonun OpenCV'nin kendi built-in **threshold()** fonksiyonu kadar hızlı çalışmamasıdır. İlgili kodun ismi **web_cam_stream_bgr_gray_user_bw.py** ve **web_cam_stream_bgr_gray_user_bw.ipynb**. Videoyu izlemek için aşağıdaki resme tıklayınız.
+Sonrasında kodu koşturduğumuzda ekranda duraklamalar gördük. Bu yavaşlamanın sebebi bizim yazdığımız **threshold()** fonksiyonun OpenCV'nin kendi built-in **threshold()** fonksiyonu kadar hızlı çalış(a)mamasıdır. İlgili kodun ismi **web_cam_stream_bgr_gray_user_bw.py**. Videoyu izlemek için aşağıdaki resme tıklayınız.
 
 [![IMAGE ALT TEXT HERE](figure/user_defined_built_in.jpg)](https://youtu.be/euN1WgKzFiY)
 
