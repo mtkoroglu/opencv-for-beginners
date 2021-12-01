@@ -297,7 +297,7 @@ cv2.waitKey(0) # kullanıcı bir tuşa basana kadar ekranda görüntüle
 
 Yukarıdaki kodu koşturduğumuzda elde ettiğimiz görüntü aşağıdaki gibidir.
 
-<img src="figure/ronaldo and messi annotated.jpg" alt="ronaldo ve messi" height="256"/>
+<img src="figure/ronaldo and messi annotated.jpg" alt="ronaldo ve messi" height="532"/>
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
