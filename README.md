@@ -298,6 +298,7 @@ cv2.waitKey(0) # kullanıcı bir tuşa basana kadar ekranda görüntüle
 Yukarıdaki kodu koşturduğumuzda elde ettiğimiz görüntü aşağıdaki gibidir.
 
 <img src="figure/ronaldo and messi annotated.jpg" alt="ronaldo ve messi" height="532"/>
+
 ### Soru 10
 Aşağıdaki kod koştuğunda dosyaya kaydedilen resim hangisidir? Eğer x = 100 değil de 50 olursa ne fark olacağını açıklayınız.
 
