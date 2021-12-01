@@ -253,6 +253,51 @@ Kodu koşturduğumuzda aşağıdaki sentetik görüntüyü elde ettik. Resmin il
 İlgili videoyu izlemek için aşağıdaki resime tıklayın.
 
 [![IMAGE ALT TEXT HERE](figure/BGR_to_gray_LQ.jpg)](https://youtu.be/eMBuYXLO4KI)
+## ARA SINAV
+# Soru 5
+Aşağıdaki kod ne yapmaktadır?
+
+```
+import cv2
+picture = cv2.imread('abc.jpg')
+print(picture.shape[0])
+print(picture.shape[1])
+picture = cv2.resize(picture, (int(picture.shape[1]/2), int(picture.shape[0]/2)),
+interpolation = cv2.INTER_AREA)
+cv2.imshow('resim', picture)
+cv2.waitKey(0)
+```
+
+Bu kod ilk önce OpenCV'nin **imread()** fonksiyonu ile dosyada yer alan **abc.jpg** isimli resim dosyasını bilgisayarımızın RAM'ine okumaktadır. Yüklenen görüntüye *picture* isimli değişken ile erişebiliriz. Sonrasında **print()** komutlarıyla konsol ekranına ilk önce görüntünün piksel cinsinden yüksekliği (satır sayısı), ardından genişliği (sütun sayısı) basılıyor. Ardından gelen **resize()** komutuyla resmin eni ve boyu tam yarısına düşürülüyor. Son olarak da yeniden boyutlandırılmış resim **imshow()** komutuyla ekranda görüntüleniyor. Son satır olan **cv2.waitKey(0)** komutunda argümanın sıfır verilmesi kullanıcı tarafından bir tuşa basıldığında ekrandan görüntülenen resmin kapatılması manasına geliyor. Eğer **cv2.waitKey(2000)** deseydik görüntü ekranda 2000ms yani 2sn kalıp otomatik olarak kapanacaktı. Bu şekilde otomatik olarak kapatma birçok görüntüyü ardarda görüntülemek istediğimiz zamanlarda oldukça kullanışlı olabilir.
+# Soru 8
+Aşağıdaki kodun çıktısı nedir?
+
+```
+mport cv2
+detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+resim = cv2.imread('messi ve ronaldo.jpg')
+griResim = cv2.cvtColor(resim, cv2.COLOR_BGR2GRAY)
+rects = detector.detectMultiScale(griResim, scaleFactor=1.25, minNeighbors=5, minSize=(30, 30), flags=cv2.CASCADE_SCALE_IMAGE)
+k = 0 # tespit edilen yüz sayısı
+isim = ['Ronaldo', 'Messi'] # oyuncuların isimlerini dikdörtgenin sol üst köşesinden x ekseninde kaydır
+isimKaydirX = [85, 60]
+for (x, y, w, h) in rects: # tespit edilen yüzleri dikdörtgen içine al ve oyuncunun ismini yazdır
+    cv2.rectangle(resim, (x, y), (x + w, y + h), (255, 255, 255), 2)
+    resim = cv2.putText(resim, isim[k], (x-isimKaydirX[k], y+int(h/4)), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 1, cv2.LINE_AA)
+    k = k + 1 # tespit edilen yüz varsa artır
+yazi0 = 'Resimde %i tane yuz tespit edildi' %k
+resim = cv2.putText(resim, yazi0, (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 1, cv2.LINE_AA)
+yazi1 = 'Yukseklik = %i piksel' %resim.shape[0]
+yazi2 = 'Genislik = %i piksel' %resim.shape[1]
+resim = cv2.putText(resim,yazi1,(550, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255,255,255), 1, cv2.LINE_AA)
+resim = cv2.putText(resim,yazi2,(550, 40), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255,255,255), 1, cv2.LINE_AA)
+cv2.imshow('yuz tespiti', resim)
+cv2.waitKey(0) # kullanıcı bir tuşa basana kadar ekranda görüntüle
+```
+
+Yukarıdaki kodu koşturduğumuzda elde ettiğimiz görüntü aşağıdaki gibidir.
+
+<img src="figure/ronaldo and messi annotated.jpg" alt="ronaldo ve messi" height="256"/>
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
