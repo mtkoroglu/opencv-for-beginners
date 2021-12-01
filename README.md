@@ -254,7 +254,7 @@ Kodu koşturduğumuzda aşağıdaki sentetik görüntüyü elde ettik. Resmin il
 
 [![IMAGE ALT TEXT HERE](figure/BGR_to_gray_LQ.jpg)](https://youtu.be/eMBuYXLO4KI)
 ## ARA SINAV
-# Soru 5
+### Soru 5
 Aşağıdaki kod ne yapmaktadır?
 
 ```
@@ -269,11 +269,11 @@ cv2.waitKey(0)
 ```
 
 Bu kod ilk önce OpenCV'nin **imread()** fonksiyonu ile dosyada yer alan **abc.jpg** isimli resim dosyasını bilgisayarımızın RAM'ine okumaktadır. Yüklenen görüntüye *picture* isimli değişken ile erişebiliriz. Sonrasında **print()** komutlarıyla konsol ekranına ilk önce görüntünün piksel cinsinden yüksekliği (satır sayısı), ardından genişliği (sütun sayısı) basılıyor. Ardından gelen **resize()** komutuyla resmin eni ve boyu tam yarısına düşürülüyor. Son olarak da yeniden boyutlandırılmış resim **imshow()** komutuyla ekranda görüntüleniyor. Son satır olan **cv2.waitKey(0)** komutunda argümanın sıfır verilmesi kullanıcı tarafından bir tuşa basıldığında ekrandan görüntülenen resmin kapatılması manasına geliyor. Eğer **cv2.waitKey(2000)** deseydik görüntü ekranda 2000ms yani 2sn kalıp otomatik olarak kapanacaktı. Bu şekilde otomatik olarak kapatma birçok görüntüyü ardarda görüntülemek istediğimiz zamanlarda oldukça kullanışlı olabilir.
-# Soru 8
+### Soru 8
 Aşağıdaki kodun çıktısı nedir?
 
 ```
-mport cv2
+import cv2
 detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 resim = cv2.imread('messi ve ronaldo.jpg')
 griResim = cv2.cvtColor(resim, cv2.COLOR_BGR2GRAY)
@@ -298,6 +298,41 @@ cv2.waitKey(0) # kullanıcı bir tuşa basana kadar ekranda görüntüle
 Yukarıdaki kodu koşturduğumuzda elde ettiğimiz görüntü aşağıdaki gibidir.
 
 <img src="figure/ronaldo and messi annotated.jpg" alt="ronaldo ve messi" height="532"/>
+### Soru 10
+Aşağıdaki kod koştuğunda dosyaya kaydedilen resim hangisidir? Eğer x = 100 değil de 50 olursa ne fark olacağını açıklayınız.
+
+```
+import cv2
+import numpy as np
+r, c = 256, 256 # resmin satır ve sütun sayısı
+resim = np.zeros((r, c), np.uint8) # r satır c sütundan oluşan siyah bir resim oluştur
+# resim üzerinde dolaşmaya başlıyoruz
+for i in range(resim.shape[0]): # i satır numarası index’i, satırları dolaşıyoruz
+    for j in range(resim.shape[1]): # j sütun numarası index’i, sütunları dolaşıyoruz
+        resim[i][j] = i # resmin i. satır j. sütunundaki pikseli i yap 
+x = 100 # quality kelimesi kalite manasına gelir
+cv2.imwrite('resim.jpg', resim, [cv2.IMWRITE_JPEG_QUALITY, x])
+```
+
+### Soru 11
+Bu soruyu dokuzuncu hafta ara sınav soruları çözümünde beraber kodlayacağız.
+
+### Soru 13
+Aşağıdaki kod ne yapmaktadır?
+
+```
+import cv2
+cap = cv2.VideoCapture(0) # cap kelimesi capture manasında yakalamak demek
+while(True):
+    ret, kare = cap.read() 
+    cv2.imshow('frame', kare)
+    if cv2.waitKey(1) & 0xFF == ord('q'): # kullanıcı q tuşuna basarsa
+        cv2.imwrite('resim.jpg', kare, [cv2.IMWRITE_JPEG_QUALITY, 100])
+        break
+cap.release()
+cv2.destroyAllWindows()
+```
+
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
