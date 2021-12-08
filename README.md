@@ -186,7 +186,7 @@ Yukarıdaki kodun açıklamasını izlemek için aşağıdaki resme tıklayın. 
 
 [![IMAGE ALT TEXT HERE](figure/filtering.png)](https://youtu.be/Q0SO2F0b8Hg)
 ## Proje 3: Yüz Tespit Etme (Face Detection)
-OpenCV'de **Haar cascade** metodu ile yüz tespiti yapacağız [5]. Adrian ayrıca **Haar Cascade** kullanarak yüz tespiti yaptığı bir projede işin içerisine iki tane servo motorda koyarak mekatronik bir proje yapmış [6]. İsteyenler OpenCV'nin **Haar Cascade** tutorial'ına da göz atabilirler. Yazdığımız kodun tamamı aşağıda.
+OpenCV'de **Haar cascade** metodu ile yüz tespiti yapacağız [5]. Adrian ayrıca **Haar Cascade** kullanarak yüz tespiti yaptığı bir projede işin içerisine iki tane servo motorda koyarak mekatronik bir proje yapmış [6]. İsteyenler OpenCV'nin **Haar Cascade** tutorial'ına da göz atabilirler [7]. Yazdığımız kodun tamamı aşağıda.
 
 ```
 import cv2
@@ -388,6 +388,7 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
+Yukarıdaki kod bilgisayarımızda web kamerasına erişip videoyu oluşturan kareleri yakalayıp ekranda görüntülemektedir. Kullanıcı bir anlık bile olsa klavyeden 'q' tuşuna basarsa o anda görüntülenmekte olan kareyi dosyaya *resim.jpg* ismiyle bir resim olarak kaydetmektedir.
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
