@@ -254,6 +254,7 @@ Kodu koşturduğumuzda aşağıdaki sentetik görüntüyü elde ettik. Resmin il
 
 [![IMAGE ALT TEXT HERE](figure/BGR_to_gray_LQ.jpg)](https://youtu.be/eMBuYXLO4KI)
 ## ARA SINAV
+Ara sınav sorularının çözümleri DBS'de dokuzuncu hafta bölümünde yapıldı. Videoları oradan izleyebilirsiniz. Ara sınavda kod içeren soruların çözümleri aşağıda. İlgili kodlar yukarıda **project/midterm** dizinine konuldu. İsteyenler kodları aşağıda da görebilir.
 ### Soru 5
 Aşağıdaki kod ne yapmaktadır?
 
