@@ -315,6 +315,10 @@ x = 100 # quality kelimesi kalite manasına gelir
 cv2.imwrite('resim.jpg', resim, [cv2.IMWRITE_JPEG_QUALITY, x])
 ```
 
+Yukarıdaki kodu koşturduğumuzda aşağıdaki gibi bir resim elde ederiz. Eğer x=100 değilde x=50 seçilirse dosyaya kaydedilen *resim.jpg* dosyasının boyutu (kb cinsinden) daha küçük olur ve kaydedilen resim görüntülendiğinde daha kötü (piksel piksel) gözükür.
+
+<img src="figure/gri_tonlu_resim.jpg" alt="gri tonlu resim" height="256"/>
+
 ### Soru 11
 Bu soruyu dokuzuncu hafta ara sınav soruları çözümünde beraber kodlayacağız.
 
