@@ -370,7 +370,7 @@ cv2.imwrite('giraffe bilateralFilter.jpg', filtrelenmisResim4, [cv2.IMWRITE_JPEG
 cv2.imwrite('giraffe birlesik resim resized.jpg', resimBirlesik, [cv2.IMWRITE_JPEG_QUALITY, 100])
 ```
 
-<img src="figure/giraffe_birlesik_resim_resized.jpg" alt="gri tonlu resim" height="320"/>
+<img src="figure/giraffe_birlesik_resim_resized.jpg" alt="gri tonlu resim" height="640"/>
 
 ### Soru 13
 Aşağıdaki kod ne yapmaktadır?
