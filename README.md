@@ -316,7 +316,7 @@ x = 100 # quality kelimesi kalite manasına gelir
 cv2.imwrite('resim.jpg', resim, [cv2.IMWRITE_JPEG_QUALITY, x])
 ```
 
-Yukarıdaki kodu koşturduğumuzda aşağıdaki gibi bir resim elde ederiz. Eğer x=100 değilde x=50 seçilirse dosyaya kaydedilen *resim.jpg* dosyasının boyutu (kb cinsinden) daha küçük olur ve kaydedilen resim görüntülendiğinde daha kötü (piksel piksel) gözükür.
+Yukarıdaki kodu koşturduğumuzda aşağıdaki gibi bir resim elde ederiz. Eğer x=100 değilde x=50 seçilirse dosyaya kaydedilen *resim.jpg* dosyasının boyutu (kilobyte veya megabyte cinsinden) daha az olur ve kaydedilen resim görüntülendiğinde daha kötü (piksel piksel) gözükür. Burada resmin boyutu küçülür diyenlerden kısmi puan kırıldı çünkü resmin boyutu denilince akla gelen ilk kavram resmin satır ve sütun sayısı (resmin piksel cinsinden boyu ve eni).
 
 <img src="figure/gray_scale_midterm.jpg" alt="gri tonlu resim" height="256"/>
 
