@@ -321,7 +321,7 @@ Yukarıdaki kodu koşturduğumuzda aşağıdaki gibi bir resim elde ederiz. Eğe
 <img src="figure/gray_scale_midterm.jpg" alt="gri tonlu resim" height="256"/>
 
 ### Soru 11
-Kod aşağıda.
+Ara sınavda sorulan sorunun cevabı olan kod aşağıda. Kodun altındaki birleştirilmiş resmi çıktı veren genişletilmiş koda yukarıda **project/midterm** dizininin içerisinde **question.11.py** ismiyle erişebilirsiniz. Genişletilmiş resmi oluşturmak için ilk önce resimleri yan yana eklediğimizde 
 
 ```
 import cv2
