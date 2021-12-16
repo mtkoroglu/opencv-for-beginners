@@ -321,7 +321,7 @@ Yukarıdaki kodu koşturduğumuzda aşağıdaki gibi bir resim elde ederiz. Eğe
 <img src="figure/gray_scale_midterm.jpg" alt="gri tonlu resim" height="256"/>
 
 ### Soru 11
-Ara sınavda sorulan sorunun cevabı olan kod aşağıda. Kodun altındaki birleştirilmiş resmi çıktı veren genişletilmiş koda yukarıda **project/midterm** dizininin içerisinde **question11_extended.py** ismiyle erişebilirsiniz. Genişletilmiş resmi oluşturmak için ilk önce resimleri yan yana eklediğimizde...
+Ara sınavda sorulan sorunun cevabı olan kod aşağıda.
 
 ```
 import cv2
@@ -354,6 +354,24 @@ cv2.imwrite('giraffe medianBlur.jpg', fresim3, [cv2.IMWRITE_JPEG_QUALITY, 100])
 cv2.imwrite('giraffe bilateralFilter.jpg', fresim4, [cv2.IMWRITE_JPEG_QUALITY, 100])
 ```
 
+Yukarıdaki koda **numpy** kütüphanesi kullanarak birleştirilmiş resim oluşturmayı ekleyelim. Genişletilmiş resmi oluşturmak için ilk önce genişletilmiş resim boyutunda boş bir matris oluşturduk. 
+
+```
+# orijinal, GaussianBlur() ve bilateralFilter() resim sonuçlarını tek resim haline getir
+r, c = resim.shape[0], resim.shape[1]
+resimBirlesik = np.zeros((r, 3*c, 3), np.uint8)
+```
+
+Burada **resimBirlesik** isimli matris üç boyutlu çünkü genişletilmiş resmi BGR yani renkli resimlerden oluşturuyoruz. Satır sayısı bir resim ile aynı olmakla beraber sütun sayısı bir resmin üç katı. Ardından **slicing** denilen metodla boş matrisin ilgili **1/3**'lük paylarına tekabül eden resimleri koyuyoruz.
+
+```
+resimBirlesik[0:r, 0:c, :] = resim
+resimBirlesik[0:r, c:2*c, :] = fresim2
+resimBirlesik[0:r, 2*c:3*c, :] = fresim4
+```
+
+Resmin üzerine yazı yazmaya önceden çok baktık. İlgili kodda **cv2.putText()** komutlarını bulup inceleyebilirsiniz. Aşağıdaki resmi çıktı veren genişletilmiş koda yukarıda **project/midterm** dizininin içerisinde **question11_extended.py** ismiyle erişebilirsiniz.
+
 <img src="figure/giraffe_birlesik_resim_resized.jpg" alt="gri tonlu resim" height="400"/>
 
 ### Soru 13
@@ -373,6 +391,36 @@ cv2.destroyAllWindows()
 ```
 
 Yukarıdaki program bilgisayarımızda web kamerasına erişip videoyu oluşturan kareleri yakalayıp ekranda ard arda görüntülemektedir. Kullanıcı bir anlık bile olsa klavyeden 'q' tuşuna basarsa, o anda görüntülenmekte olan kareyi dosyaya *resim.jpg* ismiyle bir resim olarak kaydetmekte ve koşmakta olan programı sonlandırmaktadır.
+## PROJE 5: Stereo Web Kamerası Akışından Genişletilmiş Resim oluşturma
+Final sınavına yönelik bir egzersiz olduğundan bu koda vakit ayıracağız. Top takibi konusundan sonra stereo kameralara dönüp üç boyutlu uzayda topu takip edip **rendering** işlemi ile (belki OpenGL kullanarak) topu takip edebiliriz. Aşağıdaki kod yukarıda **project/stereo** dosyasının içinde **imwrite_webcam_stereo_image.py** ismiyle bulabilirsiniz.
+
+```
+import cv2
+import numpy as np
+cap0 = cv2.VideoCapture(0)
+cap1 = cv2.VideoCapture(1)
+while(True):
+    ret0, frame0 = cap0.read()
+    ret1, frame1 = cap1.read()
+    r, c = frame0.shape[0], frame0.shape[1]
+    frameStereo = np.zeros((r, 2*c, 3), np.uint8)
+    frameStereo[:,0:c,:] = frame0
+    frameStereo[:,c:2*c,:] = frame1
+    cv2.imshow('webcam stereo image', frameStereo)
+    if cv2.waitKey(1) & 0xFF == ord('r'):
+        cv2.imwrite('webcam_stereo_image.jpg', frameStereo, [cv2.IMWRITE_JPEG_QUALITY, 100])
+        print('Resim başarıyla kaydedildi.')
+    elif cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+cap0.release()
+cap1.release()
+cv2.destroyAllWindows()
+```
+
+Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_stereo_image_extended.py** isimli dosyadan erişebilirsiniz. Bu kod koşarken klavyeden **r** tuşuna basılarak alınan örnek bir resim aşağıda verilmiştir.
+
+<img src="figure/webcam_stereo_image_0.jpg" alt="birleştirilmiş resim" height="240"/>
+
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] numpy Kütüphanesi ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
