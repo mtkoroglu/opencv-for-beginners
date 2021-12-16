@@ -419,7 +419,7 @@ cv2.destroyAllWindows()
 
 Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_stereo_image_extended.py** isimli dosyadan erişebilirsiniz. Bu kod koşarken klavyeden **r** tuşuna basılarak alınan örnek bir resim aşağıda verilmiştir.
 
-<img src="figure/webcam_stereo_image_0.jpg" alt="birleştirilmiş resim" height="240"/>
+<img src="figure/webcam_stereo_image_1.jpg" alt="birleştirilmiş resim" height="240"/>
 
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
