@@ -392,7 +392,7 @@ cv2.destroyAllWindows()
 
 Yukarıdaki program bilgisayarımızda web kamerasına erişip videoyu oluşturan kareleri yakalayıp ekranda ard arda görüntülemektedir. Kullanıcı bir anlık bile olsa klavyeden 'q' tuşuna basarsa, o anda görüntülenmekte olan kareyi dosyaya *resim.jpg* ismiyle bir resim olarak kaydetmekte ve koşmakta olan programı sonlandırmaktadır.
 ## PROJE 5: Stereo Web Kamerası Akışından Genişletilmiş Resim oluşturma
-Final sınavına yönelik bir egzersiz olduğundan bu koda vakit ayıracağız. Top takibi konusundan sonra stereo kameralara dönüp üç boyutlu uzayda topu takip edip **rendering** işlemi ile (belki OpenGL kullanarak) topu takip edebiliriz. Aşağıdaki kod yukarıda **project/stereo** dosyasının içinde **imwrite_webcam_stereo_image.py** ismiyle bulabilirsiniz.
+Final sınavına yönelik bir egzersiz olduğundan bu koda vakit ayıracağız. Aşağıdaki kodu yukarıda **project/stereo** dosyasının içinde **imwrite_webcam_stereo_image.py** ismiyle bulabilirsiniz.
 
 ```
 import cv2
@@ -417,11 +417,12 @@ cap1.release()
 cv2.destroyAllWindows()
 ```
 
-Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_stereo_image_extended.py** isimli dosyadan erişebilirsiniz. Bu kod koşarken klavyeden **r** tuşuna basılarak alınan örnek bir resim aşağıda verilmiştir.
+Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_stereo_image_extended.py** isimli dosyadan erişebilirsiniz. Genişletilmiş kodda iki web kamerası tarafından yakalanan karelerin yüksekliklerinin farklı olma durumu göz önünde bulunduruluyor ve kare sayısı birleştirilmiş resmin sağ üst köşesine yazdırılıyor. Genişletilmiş kod koşarken klavyeden **r** tuşuna (**record** yani kayıt demek) basılarak alınan örnek iki resim aşağıda gösterilmiştir.
 
 <img src="figure/webcam_stereo_image_0.jpg" alt="birleştirilmiş resim" height="240"/>
 <img src="figure/webcam_stereo_image_1.jpg" alt="birleştirilmiş resim" height="240"/>
 
+## PROJE 6: RGB Uzayında ve Gri-Tonlu Uzayda Renklere Hakim Olma
 
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
