@@ -423,7 +423,13 @@ Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_ste
 <img src="figure/webcam_stereo_image_1.jpg" alt="birleştirilmiş resim" height="240"/>
 
 ## PROJE 6: HSV Renk Uzayından Faydalanarak Yeşil ve Mavi Top Tespiti (Dizüstü Bilgisayar'da ve Raspberry Pi'da)
-Bugüne kadar gri tonlu uzaya ve RGB diye adlandırılan Red-Green-Blue yani Kırmızı-Yeşil-Mavi renk uzayına göz attık. RGB uzayı her ne kadar renklerin tanımlı olduğu bir uzay olsa da ... [8].
+Bugüne kadar gri tonlu (İng. gray scale) ve RGB diye adlandırılan Red-Green-Blue yani Kırmızı-Yeşil-Mavi renk uzaylarında çalıştık. 
+
+<img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_rgb_cube.png?lossy=1&strip=1&webp=1" alt="RGB cube" height="240"/>
+
+RGB uzayı her ne kadar renkli bir uzay olsa da görüntü işleme alanında çalışan usta kişiler renge göre nesne tespiti/takibi yapacakları zaman renk tanımlarını RGB uzayında değil HSV uzayı denilen başka bir renk uzayında yapıyorlar [8].
+
+OpenCV'de yeşil top tespiti/takibi tutorial'ı için Adrian'ın sayfasına bakınız [9].
 
 ## PROJE 7: Kalman Filtresi ile Yeşil Renkli Top Takibi
 
@@ -437,4 +443,5 @@ Bugüne kadar gri tonlu uzaya ve RGB diye adlandırılan Red-Green-Blue yani Kı
 [5] OpenCV'de **Haar Cascade** Metodu ile Yüz Tespiti [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/05/opencv-face-detection-with-haar-cascades/</br>
 [6] Raspberry Pi ve OpenCV kullanarak Pan-Tilt Kamera ile Yüz Takibi [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2019/04/01/pan-tilt-face-tracking-with-a-raspberry-pi-and-opencv/</br>
 [7] Haar Cascade ile Yüz ve Göz Tespiti (OpenCV tutorial) - https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html</br>
-[8] OpenCV'de Renk Uzayları Arasında Dönüşüm - https://www.pyimagesearch.com/2021/04/28/opencv-color-spaces-cv2-cvtcolor/
+[8] OpenCV'de Renk Uzayları Arasında Dönüşüm - https://www.pyimagesearch.com/2021/04/28/opencv-color-spaces-cv2-cvtcolor/</br>
+[9] OpenCv ile Yeşil Top Tespiti (Takibi) - https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
