@@ -423,13 +423,15 @@ Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_ste
 <img src="figure/webcam_stereo_image_1.jpg" alt="birleştirilmiş resim" height="240"/>
 
 ## PROJE 6: HSV Renk Uzayından Faydalanarak Yeşil ve Mavi Top Tespiti (Dizüstü Bilgisayar'da ve Raspberry Pi'da)
-Bugüne kadar gri tonlu (İng. gray scale) ve RGB diye adlandırılan Red-Green-Blue yani Kırmızı-Yeşil-Mavi renk uzaylarında çalıştık. 
+Bugüne kadar gri tonlu (İng. gray scale) ve RGB diye adlandırılan Red-Green-Blue yani Kırmızı-Yeşil-Mavi renk uzaylarında çalıştık. RGB renk uzayında renk oluşturmayı anlamak için bu uzayı aşağıda *Şekil 1*'de gösterildiği gibi bir kübe benzeteceğiz.
 
-<img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_rgb_cube.png?lossy=1&strip=1&webp=1" alt="RGB cube" height="240"/>
+<img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_rgb_cube.png?lossy=1&strip=1&webp=1" alt="RGB cube" height="300"/>
 
-*Şekil 1*: RGB kübü. Renk oluşturuken kanal değerleri [0-255] arasında değerler alabilir ([8]'in izni ile).
+*Şekil 1*: RGB kübü ([8]'in izni ile). Renk oluşturuken kanal değerleri [0-255] arasında değerler alabilir. OpenCV'de kanal sıralamasının RGB değil de BGR olduğu göz önüne alınırsa mavi = (255, 0, 0), yeşil = (0, 255, 0) ve kırmızı = (0, 0, 255) olarak kodlanır. Şekle bakarak sarı rengin (0, 255, 255) olarak kodlandığını kendiniz çıkarabilirsiniz. Final sınavında bu şekil verilerek majenta ve turkuaz (cyan) renklerinin kodları sorulabilir. Ara sınavda RGB uzayında siyah, beya ve gri renk kodları sorulmuştu, final sınavında yine bu bilgilere ihtiyaç duyulabilir.
 
-RGB uzayı her ne kadar renkli bir uzay olsa da görüntü işleme alanında çalışan usta kişiler renge göre nesne tespiti/takibi yapacakları zaman renk tanımlarını RGB uzayında değil HSV uzayı denilen başka bir renk uzayında yapıyorlar [8].
+RGB uzayı her ne kadar renkli bir uzay olsa da görüntü işleme alanında çalışan usta kişiler renge göre nesne tespiti/takibi yapacakları zaman renk tanımlarını RGB uzayında değil HSV uzayı denilen başka bir renk uzayında yapıyorlar [8]. HSV uzayı RGB uzayı gibi kartezyen bir koordinat sisteminde değil, *Şekil 2*'de görüldüğü gibi silindirik bir koordinat sisteminde temsil ediliyor.
+
+<img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_hsv_cylinder.png?lossy=1&strip=1&webp=1" alt="HSV color space" height="360"/>
 
 OpenCV'de yeşil top tespiti/takibi tutorial'ı için Adrian'ın sayfasına bakınız [9].
 
