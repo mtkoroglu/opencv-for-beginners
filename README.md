@@ -426,6 +426,7 @@ Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_ste
 Bugüne kadar gri tonlu (İng. gray scale) ve RGB diye adlandırılan Red-Green-Blue yani Kırmızı-Yeşil-Mavi renk uzaylarında çalıştık. 
 
 <img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_rgb_cube.png?lossy=1&strip=1&webp=1" alt="RGB cube" height="240"/>
+*Şekil 1*: RGB kübü. Renk oluşturuken kanal değerleri [0-255] arasında değerler alabilir ([8]'in izni ile).
 
 RGB uzayı her ne kadar renkli bir uzay olsa da görüntü işleme alanında çalışan usta kişiler renge göre nesne tespiti/takibi yapacakları zaman renk tanımlarını RGB uzayında değil HSV uzayı denilen başka bir renk uzayında yapıyorlar [8].
 
