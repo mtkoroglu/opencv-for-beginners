@@ -417,12 +417,21 @@ cap1.release()
 cv2.destroyAllWindows()
 ```
 
-Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_stereo_image_extended.py** isimli dosyadan erişebilirsiniz. Genişletilmiş kodda iki web kamerası tarafından yakalanan karelerin yüksekliklerinin farklı olma durumu göz önünde bulunduruluyor ve kare sayısı birleştirilmiş resmin sağ üst köşesine yazdırılıyor. Genişletilmiş kod koşarken klavyeden **r** tuşuna (**record** yani kayıt demek) basılarak alınan örnek iki resim aşağıda gösterilmiştir.
+Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_stereo_image_extended.py** isimli dosyadan erişebilirsiniz. Genişletilmiş kodda iki ayrı web kamerası tarafından yakalanan karelerin yüksekliklerinin farklı olma durumu göz önüne alınıyor ve kare numarası (İng. *frame number*) birleştirilmiş resmin sağ üst köşesine yazdırılıyor. Genişletilmiş kod koşarken klavyeden **r** tuşuna (**record** yani kayıt demek) basılarak alınan örnek iki resim aşağıda gösterilmiştir.
 
 <img src="figure/webcam_stereo_image_0.jpg" alt="birleştirilmiş resim" height="240"/>
 <img src="figure/webcam_stereo_image_1.jpg" alt="birleştirilmiş resim" height="240"/>
 
-## PROJE 6: RGB Uzayında ve Gri-Tonlu Uzayda Renklere Hakim Olma
+## PROJE 6: Gri-Tonlu Uzay, RGB Uzayı ve HSV Renk Uzayı
+Bugüne kadar gri tonlu uzaya ve RGB diye adlandırılan Red-Green-Blue yani Kırmızı-Yeşil-Mavi renk uzayına göz attık. RGB uzayı her ne kadar renklerin tanımlı olduğu bir uzay olsa da ... [8].
+
+## PROJE 7: HSV Renk Uzayı Kullanarak Yeşil Renkli Top Tespiti - Dizüstü Bilgisayar
+
+## PROJE 8: HSV Renk Uzayı Kullanarak Yeşil Renkli Top Tespiti - Raspberry Pi
+
+## PROJE 9: Kalman Filtresi ile Yeşil Renkli Top Takibi
+
+## Proje 10: KLT Tracker
 
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
@@ -431,4 +440,5 @@ Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_ste
 [4] OpenCV'de Görüntü Filtreleme (Bulandırma) [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/28/opencv-smoothing-and-blurring/</br>
 [5] OpenCV'de **Haar Cascade** Metodu ile Yüz Tespiti [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2021/04/05/opencv-face-detection-with-haar-cascades/</br>
 [6] Raspberry Pi ve OpenCV kullanarak Pan-Tilt Kamera ile Yüz Takibi [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2019/04/01/pan-tilt-face-tracking-with-a-raspberry-pi-and-opencv/</br>
-[7] Haar Cascade ile Yüz ve Göz Tespiti (OpenCV tutorial) - https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html
+[7] Haar Cascade ile Yüz ve Göz Tespiti (OpenCV tutorial) - https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html</br>
+[8] OpenCV'de Renk Uzayları Arasında Dönüşüm - https://www.pyimagesearch.com/2021/04/28/opencv-color-spaces-cv2-cvtcolor/
