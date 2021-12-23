@@ -422,16 +422,12 @@ Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_ste
 <img src="figure/webcam_stereo_image_0.jpg" alt="birleştirilmiş resim" height="240"/>
 <img src="figure/webcam_stereo_image_1.jpg" alt="birleştirilmiş resim" height="240"/>
 
-## PROJE 6: Gri-Tonlu Uzay, RGB Uzayı ve HSV Renk Uzayı
+## PROJE 6: HSV Renk Uzayından Faydalanarak Yeşil ve Mavi Top Tespiti (Dizüstü Bilgisayar'da ve Raspberry Pi'da)
 Bugüne kadar gri tonlu uzaya ve RGB diye adlandırılan Red-Green-Blue yani Kırmızı-Yeşil-Mavi renk uzayına göz attık. RGB uzayı her ne kadar renklerin tanımlı olduğu bir uzay olsa da ... [8].
 
-## PROJE 7: HSV Renk Uzayı Kullanarak Yeşil Renkli Top Tespiti - Dizüstü Bilgisayar
+## PROJE 7: Kalman Filtresi ile Yeşil Renkli Top Takibi
 
-## PROJE 8: HSV Renk Uzayı Kullanarak Yeşil Renkli Top Tespiti - Raspberry Pi
-
-## PROJE 9: Kalman Filtresi ile Yeşil Renkli Top Takibi
-
-## Proje 10: KLT Tracker
+## Proje 8: KLT Tracker
 
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
