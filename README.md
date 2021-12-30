@@ -422,7 +422,7 @@ Genişletilmiş koda yukarıda **project/stereo** dizininde **imwrite_webcam_ste
 <img src="figure/webcam_stereo_image_0.jpg" alt="birleştirilmiş resim" height="240"/>
 <img src="figure/webcam_stereo_image_1.jpg" alt="birleştirilmiş resim" height="240"/>
 
-## PROJE 6: HSV Renk Uzayından Faydalanarak Yeşil ve Mavi Top Tespiti (Dizüstü Bilgisayar'da ve Raspberry Pi'da)
+## PROJE 6: HSV Renk Uzayından Faydalanarak Yeşil Top Tespiti (Dizüstü Bilgisayar'da ve Raspberry Pi'da)
 Bugüne kadar gri tonlu (İng. gray scale) ve RGB diye adlandırılan Red-Green-Blue yani Kırmızı-Yeşil-Mavi renk uzaylarında çalıştık. RGB renk uzayında renk oluşturmayı anlamak için bu uzayı aşağıda *Şekil 1*'de gösterildiği gibi bir kübe benzeteceğiz.
 
 <img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_rgb_cube.png?lossy=1&strip=1&webp=1" alt="RGB cube" height="300"/>
@@ -434,6 +434,13 @@ RGB uzayı her ne kadar renkli bir uzay olsa da görüntü işleme alanında ça
 <img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_hsv_cylinder.png?lossy=1&strip=1&webp=1" alt="HSV color space" height="360"/>
 
 OpenCV'de yeşil top tespiti/takibi tutorial'ı için Adrian'ın sayfasına bakınız [9].
+### FPS Değerinin Hesaplanması ve Görüntülenmesi
+Web kamerasından yakaladığımız kareleri iiledikten hemen sonra bir zaman etiketi (İng. time stamp) alıp bu şekilde döngüde aynı yere her geldiğimizde FPS değerinni hesaplayıp aynı zamanda ekranda görüntülemek istiyoruz. İlgili kod yukarıda **project/ball_tracking/ball_tracking_fps.py** isimli dosyada. Python'da **time** paketini kullanırken internette bir örnekten faydalandık [10].
+
+<img src="figure/top_takibi_0.jpg" alt="HSV color space" height="240"/>
+
+<img src="figure/top_takibi_1.jpg" alt="HSV color space" height="240"/>
+
 
 ## PROJE 7: Kalman Filtresi ile Yeşil Renkli Top Takibi
 
@@ -448,4 +455,5 @@ OpenCV'de yeşil top tespiti/takibi tutorial'ı için Adrian'ın sayfasına bak�
 [6] Raspberry Pi ve OpenCV kullanarak Pan-Tilt Kamera ile Yüz Takibi [A. Rosebrock, pyimagesearch.com] - https://www.pyimagesearch.com/2019/04/01/pan-tilt-face-tracking-with-a-raspberry-pi-and-opencv/</br>
 [7] Haar Cascade ile Yüz ve Göz Tespiti (OpenCV tutorial) - https://docs.opencv.org/4.x/db/d28/tutorial_cascade_classifier.html</br>
 [8] OpenCV'de Renk Uzayları Arasında Dönüşüm - https://www.pyimagesearch.com/2021/04/28/opencv-color-spaces-cv2-cvtcolor/</br>
-[9] OpenCv ile Yeşil Top Tespiti (Takibi) - https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
+[9] OpenCV ile Yeşil Top Tespiti (Takibi) - https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/</br>
+[10] OpenCV'de **time** paketi kullanılarak FPS hesaplanması - https://www.geeksforgeeks.org/python-displaying-real-time-fps-at-which-webcam-video-file-is-processed-using-opencv/
