@@ -437,8 +437,7 @@ OpenCV'de yeşil top tespiti/takibi tutorial'ı için Adrian'ın sayfasına bak�
 ### FPS Değerinin Hesaplanması ve Görüntülenmesi
 Web kamerasından yakaladığımız kareleri iiledikten hemen sonra bir zaman etiketi (İng. time stamp) alıp bu şekilde döngüde aynı yere her geldiğimizde FPS değerinni hesaplayıp aynı zamanda ekranda görüntülemek istiyoruz. İlgili kod yukarıda **project/ball_tracking/ball_tracking_fps.py** isimli dosyada. Python'da **time** paketini kullanırken internette bir örnekten faydalandık [10].
 
-<img src="figure/top_takibi_0.jpg" alt="HSV color space" height="240"/>
-<img src="figure/top_takibi_1.jpg" alt="HSV color space" height="240"/>
+<img src="figure/top_takibi_0.jpg" alt="HSV color space" height="240"/><img src="figure/top_takibi_1.jpg" alt="HSV color space" height="240"/>
 
 
 ## PROJE 7: Kalman Filtresi ile Yeşil Renkli Top Takibi
