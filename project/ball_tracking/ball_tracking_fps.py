@@ -6,6 +6,7 @@ import cv2
 import numpy as np
 import imutils
 from collections import deque
+import time # ekranda fps değerini görüntülemek için
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
@@ -21,7 +22,10 @@ count = 0 # dosyaya resim kaydetmek istediğimizde ismi dinamik olarak değişsi
 # HSV color space, then initialize the list of tracked points
 greenLower = (29, 86, 6)
 greenUpper = (64, 255, 255)
-pts = deque(maxlen=args["buffer"])
+pts = deque(maxlen=args["buffer"]) # ekranda son pts karedeki topun konumunu çizdirme
+fpsNumber = np.zeros(60, np.float32)
+prev_frame_time = 0 # used to record the time when we processed last frame
+new_frame_time = 0 # used to record the time at which we processed current frame
 
 cap = cv2.VideoCapture(0)
 while(True):
@@ -72,8 +76,34 @@ while(True):
 		# draw the connecting lines
         thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
         cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
+
+    # time when we finish processing for this frame
+    new_frame_time = time.time()
+    # Calculating the fps
+    # fps will be number of frame processed in given time frame
+    # since their will be most of time error of 0.001 second
+    # we will be subtracting it to get more accurate result
+    fps = 1/(new_frame_time-prev_frame_time)
+    prev_frame_time = new_frame_time
+
+    # loop over the set of calculated fps values
+    for i in range(fpsNumber.shape[0]):
+		# if either of the tracked points are None, ignore them
+        if i < (fpsNumber.shape[0])-1:
+            fpsNumber[i] = fpsNumber[i+1]
+        else:
+            fpsNumber[i] = fps
+    fpsAvg = np.mean(fpsNumber)
+
+    # create fps number text
+    fpsText = 'FPS = %i' %int(fps)
+    fpsAvgText = 'Avg FPS = %i' %int(fpsAvg)
+    # displaying FPS number on the frame
+    cv2.putText(frame, fpsText, (7, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+    cv2.putText(frame, fpsAvgText, (7, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+    # displaying frame number on the frame
     frameNumberText = 'Frame #%i' %frameNumber
-    frame = cv2.putText(frame, frameNumberText, (col-250, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2, cv2.LINE_AA)
+    frame = cv2.putText(frame, frameNumberText, (col-250, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
     cv2.imshow('green ball detection', frame)
     if cv2.waitKey(1) & 0xFF == ord('c'):
         imageName = 'top_takibi_%i.jpg' %count
