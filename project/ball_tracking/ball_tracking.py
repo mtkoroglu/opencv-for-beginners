@@ -9,14 +9,12 @@ from collections import deque
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-v", "--video",
-	help="path to the (optional) video file")
 ap.add_argument("-b", "--buffer", type=int, default=64,
 	help="max buffer size")
 args = vars(ap.parse_args())
 
 frameNumber = 0 # görüntünün üzerinde hangi karede olduğumuzu görüntüleyelim
-count = 0 # dosyaya resim kaydetmek istediğimizde ismi dinamik olarak değişsin
+writeFileIndex = 0 # dosyaya resim kaydetmek istediğimizde ismi dinamik olarak değişsin
 # define the lower and upper boundaries of the "green" ball in the 
 # HSV color space, then initialize the list of tracked points
 greenLower = (29, 86, 6)
@@ -72,14 +70,16 @@ while(True):
 		# draw the connecting lines
         thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
         cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
+    ballCoordinateText = 'x=%i y=%i' %(center[0], center[1])
+    cv2.putText(frame, ballCoordinateText, (20, raw - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
     frameNumberText = 'Frame #%i' %frameNumber
     frame = cv2.putText(frame, frameNumberText, (col-250, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2, cv2.LINE_AA)
     cv2.imshow('green ball detection', frame)
     if cv2.waitKey(1) & 0xFF == ord('c'):
-        imageName = 'top_takibi_%i.jpg' %count
+        imageName = 'top_takibi_%i.jpg' %writeFileIndex
         cv2.imwrite(imageName, frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
         print('%s isimli resim başarıyla kaydedildi.' %imageName)
-        count += 1
+        writeFileIndex += 1
     elif cv2.waitKey(1) & 0xFF == ord('q'):
         print('Program sonlandırıldı.')
         break
