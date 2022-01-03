@@ -443,10 +443,8 @@ Web kamerasından yakaladığımız son kareyi işledikten hemen sonra bir zaman
 
 <img src="figure/top_takibi_0.jpg" alt="HSV color space" height="240"/><img src="figure/top_takibi_1.jpg" alt="HSV color space" height="240"/>
 
-
-## PROJE 7: Kalman Filtresi ile Yeşil Renkli Top Takibi
-
 ## Proje 8: KLT Tracker
+Bu projemizde pikseller arasındaki değişimin şiddetine göre tanımlayacağımız **structure tensor** isimli bir yapı ile resim üzerinde bazı **interest points** yani ilgilendiğimiz noktalar tespit edeceğiz. Bunlar bizim **feature**'larımız olacak. Takip eden karelerse KLT tracker isimli bir metod ile bu noktaları takip edeceğiz.
 
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
