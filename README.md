@@ -435,7 +435,7 @@ RGB uzayı her ne kadar renkli bir uzay olsa da görüntü işleme alanında ça
 
 OpenCV'de yeşil top tespiti/takibi tutorial'ı için Adrian'ın sayfasına bakabilirsiniz [9]. Bizim derste yazdığımız kod için yukarıda **project/ball_tracking** isimli dosyada **ball_tracking.py** isimli dosyaya bakın. Kodun açıklaması için aşağıdaki videoyu izleyebilirsiniz.
 
-[![IMAGE ALT TEXT HERE](figure/top_takibi.jpg)](https://youtu.be/eMBuYXLO4KI)
+[![IMAGE ALT TEXT HERE](figure/top_takibi.jpg)](https://youtu.be/Htb1co2PUQM)
 
 ### PROJE 7: FPS Değerinin Hesaplanması ve Görüntülenmesi
 Web kamerasından yakaladığımız son kareyi işledikten hemen sonra bir zaman etiketi (İng. time stamp) alırsak bir önceki etiketten farkını hesaplayarak işlem hızımızı ölçebiliriz. Görüntü işlemede **FPS** değeri bir nevi işlem hızımıza tekabül ediyor: FPS ne kadar büyükse o kadar hızlı, ne kadar küçükse o kadar yavaş işlem yapıyoruz demektir. İşlem hızımız donanımımıza bağlı olduğu gibi (e.g., nvidia ekran kartı, bilgisayarın CPU'su, Raspberry Pi) koşan algoritmanın basitliğine/kompleksliğine de direk bağlıdır.
