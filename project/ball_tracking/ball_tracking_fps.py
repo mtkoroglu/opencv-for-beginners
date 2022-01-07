@@ -10,24 +10,24 @@ import time # ekranda fps değerini görüntülemek için
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-v", "--video",
-	help="path to the (optional) video file")
 ap.add_argument("-b", "--buffer", type=int, default=64,
 	help="max buffer size")
+ap.add_argument("-f", "--fps", type=int, default=30,
+	help="(most recent) number of frames for computing the average fps")
 args = vars(ap.parse_args())
 
 frameNumber = 0 # görüntünün üzerinde hangi karede olduğumuzu görüntüleyelim
-count = 0 # dosyaya resim kaydetmek istediğimizde ismi dinamik olarak değişsin
+writeFileIndex = 0 # dosyaya resim kaydetmek istediğimizde ismi dinamik olarak değişsin
 # define the lower and upper boundaries of the "green" ball in the 
 # HSV color space, then initialize the list of tracked points
 greenLower = (29, 86, 6)
 greenUpper = (64, 255, 255)
 pts = deque(maxlen=args["buffer"]) # ekranda son pts karedeki topun konumunu çizdirme
-fpsNumber = np.zeros(60, np.float32)
-prev_frame_time = 0 # used to record the time when we processed last frame
-new_frame_time = 0 # used to record the time at which we processed current frame
+fps = deque(maxlen=args["fps"]) # deque isimli veri yapısı ortalama fps'yi hesaplarken bize yardım edecek
+prevFrameTime = 0 # önceki karenin yakalanma zamanı
+currentFrameTime = 0 # o andaki karenin yakalanma zamanı
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 while(True):
     ret, frame = cap.read()
     if ret:
@@ -77,39 +77,36 @@ while(True):
         thickness = int(np.sqrt(args["buffer"] / float(i + 1)) * 2.5)
         cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
 
-    # time when we finish processing for this frame
-    new_frame_time = time.time()
-    # Calculating the fps
-    # fps will be number of frame processed in given time frame
-    # since their will be most of time error of 0.001 second
-    # we will be subtracting it to get more accurate result
-    fps = 1/(new_frame_time-prev_frame_time)
-    prev_frame_time = new_frame_time
-
-    # loop over the set of calculated fps values
-    for i in range(fpsNumber.shape[0]):
-		# if either of the tracked points are None, ignore them
-        if i < (fpsNumber.shape[0])-1:
-            fpsNumber[i] = fpsNumber[i+1]
-        else:
-            fpsNumber[i] = fps
-    fpsAvg = np.mean(fpsNumber)
+    # resmin üzerinde topu bulup çizdirdikten sonra fps'yi hesaplayalım
+    currentFrameTime = time.time() # şu andaki karenin zamanı
+    fpsCurrent = 1/(currentFrameTime-prevFrameTime)
+    prevFrameTime = currentFrameTime
+    # fps değerlerinin tuttuğumuz deque yapısındaki diziye yeni hesaplanan değeri ekle
+    fps.appendleft(fpsCurrent)
+    # anlık fps değeri çok zıpladığından ortalama fps değerini hesapla
+    fpsAvg = np.mean(fps)
 
     # create fps number text
-    fpsText = 'FPS = %i' %int(fps)
+    fpsText = 'FPS = %i' %int(fpsCurrent)
     fpsAvgText = 'Avg FPS = %i' %int(fpsAvg)
     # displaying FPS number on the frame
-    cv2.putText(frame, fpsText, (7, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
-    cv2.putText(frame, fpsAvgText, (7, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
-    # displaying frame number on the frame
+    cv2.putText(frame, fpsText, (20, 30), cv2.FONT_HERSHEY_SIMPLEX, 
+    1, (0, 0, 0), 2, cv2.LINE_AA)
+    cv2.putText(frame, fpsAvgText, (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 
+    1, (0, 0, 0), 2, cv2.LINE_AA)
+    # display ball center coordinates (in pixels) on the frame
+    ballCoordinateText = 'x=%i y=%i' %(center[0], center[1])
+    cv2.putText(frame, ballCoordinateText, (20, raw - 20), 
+    cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA) 
+    # display frame number on the frame
     frameNumberText = 'Frame #%i' %frameNumber
-    frame = cv2.putText(frame, frameNumberText, (col-250, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2, cv2.LINE_AA)
+    frame = cv2.putText(frame, frameNumberText, (col-250, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2, cv2.LINE_AA)
     cv2.imshow('green ball detection', frame)
     if cv2.waitKey(1) & 0xFF == ord('c'):
-        imageName = 'top_takibi_%i.jpg' %count
+        imageName = 'top_takibi_%i.jpg' %writeFileIndex
         cv2.imwrite(imageName, frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
         print('%s isimli resim başarıyla kaydedildi.' %imageName)
-        count += 1
+        writeFileIndex += 1
     elif cv2.waitKey(1) & 0xFF == ord('q'):
         print('Program sonlandırıldı.')
         break
