@@ -459,9 +459,9 @@ değişkenleri ile H-S-V uzayında aralığı tanımlanan yeşil renk sahibi nes
 mask = cv2.inRange(hsv, greenLower, greenUpper)
 ```
 
-komutuyla tespit ediyoruz. Örnek bir çıktı aşağıda verilmiştir.
+komutuyla tespit ediyoruz. Aşağıdaki resimde web kamerasından yakalanan resim (a) şıkkında, **inRange()** komutu tespit edilen yeşil bölgeli resim (b) şıkkında gösterilmiştir (yeşil bölge beyaz, kalan bölge siyah). Dikkat edilirse (b)'deki resimde topun olduğu bölgenin dışında küçük küçük de olsa başka bölgeler de mevcuttur. Tespit etmeyi arzu etmediğimiz bu bölgelerden kurtulmak için **cv2.erode()** isimli fonksiyonu belli bir sayıda koşturuyoruz ve (c) şıkkında verilen erozyona uğramış resmi elde ediyoruz. Müteakiben **cv2.dilate()** komutunu da benzer bir şekilde belli bir tekrar ile koşturunca (d) şıkkında verilen son resmi elde ediyoruz. Burada **morphology** denilen **erode** ve **dilate** işlemlerini uygulayarak yeşil alanı daha iyi tespit etmiş olduk.
 
-<img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_hsv_cylinder.png?lossy=1&strip=1&webp=1" alt="image and green region" height="360"/>
+<img src="figure/morphology.png" alt="captured image, green region, erosion and dilation" height="360"/>
 
 OpenCV'de yeşil top tespiti/takibi tutorial'ı için Adrian'ın sayfasına bakabilirsiniz [9]. Bizim derste yazdığımız kod için yukarıda **project/ball_tracking** isimli dizinde **ball_tracking.py** ve **ball_tracking_fps.py** isimli kodlara bakın. Kodun açıklaması için yukarıdaki yorumları okuyabileceğiniz gibi aşağıdaki videoyu da izleyebilirsiniz.
 
@@ -476,11 +476,9 @@ Web kamerasından yakaladığımız son kareyi işledikten hemen sonra bir zaman
 
 <img src="figure/top_takibi_0.jpg" alt="HSV color space" height="240"/><img src="figure/top_takibi_1.jpg" alt="HSV color space" height="240"/>
 
-## Proje 8: KLT Tracker
-Bu projemizde pikseller arasındaki değişimin şiddetine göre tanımlayacağımız **structure tensor** isimli bir yapı ile resim üzerinde bazı **interest points** yani ilgilendiğimiz noktalar tespit edeceğiz. Bunlar bizim **feature**'larımız olacak. Takip eden karelerse KLT tracker isimli bir metod ile bu noktaları takip edeceğiz.
-
 ### Dipnotlar
 <sup>1</sup> İng. feature.
+
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] Standard Kütüphane ve **numpy** ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
