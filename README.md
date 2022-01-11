@@ -429,7 +429,7 @@ Bugüne kadar gri tonlu (İng. gray scale) ve RGB diye adlandırılan Red-Green-
 
 *Şekil 1*: RGB kübü ([8]'in izni ile). Renk oluştururken kanal değerleri [0-255] arasında değişebilir. OpenCV'de kanal sıralamasının RGB değil de BGR olduğu göz önüne alınırsa mavi = (255, 0, 0), yeşil = (0, 255, 0) ve kırmızı = (0, 0, 255) olarak kodlanır. Şekle bakarak sarı rengin (0, 255, 255) olarak kodlandığını kendiniz çıkarabilirsiniz. Final sınavında bu şekil verilerek majenta ve turkuaz (cyan) renklerinin kodları sorulabilir. Ara sınavda RGB uzayında siyah, beya ve gri renk kodları sorulmuştu, final sınavında yine bu bilgilere ihtiyaç duyulabilir.
 
-RGB uzayı her ne kadar renkli bir uzay olsa da görüntü işleme alanında çalışan uzmanlar renge göre nesne tespiti/takibi yapacakları zaman pratik nedenlerden dolayı renk tanımlarını RGB uzayında değil de HSV uzayı denilen başka bir renk uzayında yapıyorlar [8]. HSV uzayı RGB uzayı gibi kartezyen bir koordinat sisteminde değil de *Şekil 2*'de görüldüğü gibi silindirik bir koordinat sisteminde temsil ediliyor.
+RGB uzayı her ne kadar renkli bir uzay olsa da görüntü işleme alanında çalışan uzmanlar renge göre nesne tespiti/takibi yapacakları (yani görüntüyü bir sinyal olarak kabul edecek olursak bu sinyaldeki renk özelliğine<sup>1</sup> bakıyorlar) zaman pratik nedenlerden dolayı renk tanımlarını RGB uzayında değil de HSV uzayı denilen başka bir renk uzayında yapıyorlar [8]. HSV uzayı RGB uzayı gibi kartezyen bir koordinat sisteminde değil de *Şekil 2*'de görüldüğü gibi silindirik bir koordinat sisteminde temsil ediliyor.
 
 <img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_hsv_cylinder.png?lossy=1&strip=1&webp=1" alt="HSV color space" height="360"/>
 
@@ -449,6 +449,8 @@ Web kamerasından yakaladığımız son kareyi işledikten hemen sonra bir zaman
 ## Proje 8: KLT Tracker
 Bu projemizde pikseller arasındaki değişimin şiddetine göre tanımlayacağımız **structure tensor** isimli bir yapı ile resim üzerinde bazı **interest points** yani ilgilendiğimiz noktalar tespit edeceğiz. Bunlar bizim **feature**'larımız olacak. Takip eden karelerse KLT tracker isimli bir metod ile bu noktaları takip edeceğiz.
 
+### Dipnotlar
+<sup>1</sup> İng. feature.
 ### Referanslar
 [1] OpenCV 4.5.3 Dökümantasyonu - https://docs.opencv.org/4.5.3/</br>
 [2] Standard Kütüphane ve **numpy** ile Rasgele Sayı, Dizi ve Matris Üretme - https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/</br>
