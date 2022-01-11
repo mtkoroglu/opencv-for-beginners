@@ -433,7 +433,37 @@ RGB uzayı her ne kadar renkli bir uzay olsa da görüntü işleme alanında ça
 
 <img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_hsv_cylinder.png?lossy=1&strip=1&webp=1" alt="HSV color space" height="360"/>
 
-OpenCV'de yeşil top tespiti/takibi tutorial'ı için Adrian'ın sayfasına bakabilirsiniz [9]. Bizim derste yazdığımız kod için yukarıda **project/ball_tracking** isimli dosyada **ball_tracking.py** isimli dosyaya bakın. Kodun açıklaması için aşağıdaki videoyu izleyebilirsiniz.
+Web kamerasındandan gelen görüntüleri ard arda yakalamaya başladığımız sonsuz döngüye girince her kareyi gürültüden arındırmak için ilk önce Gaussian bulanıklaştırma filtresinden geçiriyoruz.
+
+```
+blurred = cv2.GaussianBlur(frame, (11, 11), 0)
+```
+
+Ardından renk tespitinde kolaylık sağlayalım diye B-G-R uzayından H-S-V uzayına geçiyoruz.
+
+```
+hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
+```
+
+Sonrasında yazdığımız kodun (yukarıda **project/ball_tracking** isimli dizinde **ball_tracking.py** isimli dosya) baş taraflarında
+
+```
+greenLower = (29, 86, 6)
+greenUpper = (64, 255, 255)
+
+```
+
+değişkenleri ile H-S-V uzayında aralığı tanımlanan yeşil renk sahibi nesneleri
+
+```
+mask = cv2.inRange(hsv, greenLower, greenUpper)
+```
+
+komutuyla tespit ediyoruz. Örnek bir çıktı aşağıda verilmiştir.
+
+<img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_hsv_cylinder.png?lossy=1&strip=1&webp=1" alt="image and green region" height="360"/>
+
+OpenCV'de yeşil top tespiti/takibi tutorial'ı için Adrian'ın sayfasına bakabilirsiniz [9]. Bizim derste yazdığımız kod için yukarıda **project/ball_tracking** isimli dizinde **ball_tracking.py** ve **ball_tracking_fps.py** isimli kodlara bakın. Kodun açıklaması için yukarıdaki yorumları okuyabileceğiniz gibi aşağıdaki videoyu da izleyebilirsiniz.
 
 [![IMAGE ALT TEXT HERE](figure/top_takibi.jpg)](https://youtu.be/Htb1co2PUQM)
 
