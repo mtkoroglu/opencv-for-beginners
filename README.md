@@ -453,15 +453,29 @@ greenUpper = (64, 255, 255)
 
 ```
 
-değişkenleri ile H-S-V uzayında aralığı tanımlanan yeşil renk sahibi nesneleri
+değişkenleri ile H-S-V uzayında aralığı tanımlanan yeşil nesneleri
 
 ```
 mask = cv2.inRange(hsv, greenLower, greenUpper)
 ```
 
-komutuyla tespit ediyoruz. Aşağıdaki resimde web kamerasından yakalanan resim (a) şıkkında, **inRange()** komutu tespit edilen yeşil bölgeli resim (b) şıkkında gösterilmiştir (yeşil bölge beyaz, kalan bölge siyah). Dikkat edilirse (b)'deki resimde topun olduğu bölgenin dışında küçük küçük de olsa başka bölgeler de mevcuttur. Tespit etmeyi arzu etmediğimiz bu bölgelerden kurtulmak için **cv2.erode()** isimli fonksiyonu belli bir sayıda koşturuyoruz ve (c) şıkkında verilen erozyona uğramış resmi elde ediyoruz. Müteakiben **cv2.dilate()** komutunu da benzer bir şekilde belli bir tekrar ile koşturunca (d) şıkkında verilen son resmi elde ediyoruz. Burada **morphology** denilen **erode** ve **dilate** işlemlerini uygulayarak yeşil alanı daha iyi tespit etmiş olduk.
+komutuyla tespit ediyoruz. Aşağıdaki resimde web kamerasından yakalanan resim (a) şıkkında, **inRange()** komutu tespit edilen yeşil bölgeli resim (b) şıkkında gösterilmiştir (yeşil bölge beyaz, kalan bölge siyah). Dikkat edilirse (b)'deki resimde topun olduğu bölgenin dışında az ve küçük de olsa başka bölgeler de mevcuttur. Tespit etmeyi arzu etmediğimiz bu bölgelerden kurtulmak için **cv2.erode()** isimli fonksiyonu (aşağıdaki kodda altı kere kendini tekrar edecek biçimde) koşturuyoruz 
 
-<img src="figure/morphology.png" alt="captured image, green region, erosion and dilation" height="360"/>
+```
+mask = cv2.erode(mask, None, iterations=6)
+```
+
+ve (c) şıkkında verilen erozyona uğramış resmi elde ediyoruz. Bunu takip eden kodumuzda **cv2.dilate()** komutunu da benzer bir şekilde (sekiz kere tekrar edecek şekilde) koşturunca 
+
+```
+mask = cv2.dilate(mask, None, iterations=8)
+```
+
+(d) şıkkında verilen son resmi elde ediyoruz. Burada **morphology** denilen **erode** ve **dilate** işlemlerini uygulayarak yeşil alanı daha iyi tespit etmiş olduk.
+
+<img src="figure/morphology.png" alt="captured image, green region, erosion and dilation" height="480"/>
+
+Şimdi **findContours()** isimli fonksiyonla resimde tespit ettiğimiz bölgelere sınırlar çizdirip, ardından bu sınırlardan en büyük olanını seçip bu kontura bir çember (circle) çizdiriyoruz. Bu şekilde tespit ettiğimiz yeşil topu sarı renkte bir çember içinde göstermiş oluyoruz.
 
 OpenCV'de yeşil top tespiti/takibi tutorial'ı için Adrian'ın sayfasına bakabilirsiniz [9]. Bizim derste yazdığımız kod için yukarıda **project/ball_tracking** isimli dizinde **ball_tracking.py** ve **ball_tracking_fps.py** isimli kodlara bakın. Kodun açıklaması için yukarıdaki yorumları okuyabileceğiniz gibi aşağıdaki videoyu da izleyebilirsiniz.
 
