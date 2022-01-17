@@ -29,7 +29,7 @@ import cv2
 resim = cv2.imread('IMG_20210616_202539.jpg')
 ```
 
-ve burada **type(resim)** komutu ile yüklediğimiz resmin tipine bakacak olursak **numpy.ndarray** tipinde bir veri görüyoruz ki bu da bize OpenCV'nin resimleri hafızada tutmak/erişmek için **numpy** kütüphanesi kullandığını gösteriyor. Aşağıda dördüncü egzersizde **numpy** kütüphanesi kullanarak kendimiz gri tonun bütün piksel şiddet değerlerini tarayan sentetik bir resim oluşturacağız. Bu yüzden **numpy** kütüphanesini neden kullandığımız ve de **numpy.ndarray** yani uzun haliyle **n dimedional array** ne manaya geliyor, bunlar bizim için çok olmasa da biraz önemli. 
+ve burada **type(resim)** komutu ile yüklediğimiz resmin tipine bakacak olursak **numpy.ndarray** tipinde bir veri görüyoruz ki bu da bize OpenCV'nin resimleri hafızada tutmak/erişmek için **numpy** paketini kullandığını gösteriyor. Aşağıda dördüncü egzersizde **numpy** kütüphanesi kullanarak kendimiz gri tonun bütün piksel şiddet değerlerini oluşturan sentetik bir resim oluşturacağız. Bu yüzden **numpy** kütüphanesini neden kullandığımız ve de **numpy.ndarray** yani uzun haliyle **n dimendional array** (n boyutlu dizi) ne manaya geliyor, bunlar bizim için önemli. 
 
 Yüklediğimiz resmin **features** denilen özelliklerine bakmak istediğimizde konsola
 
@@ -37,13 +37,13 @@ Yüklediğimiz resmin **features** denilen özelliklerine bakmak istediğimizde 
 dir(resim)
 ```
 
-komutunu yazarız. Karşımıza çıkan özelliklerden birisi de **shape** yani resmin şekli (bu bizim **çok sık** kullanacağımız bir özellik). Aşağıdaki kod resmin yüksekliğini (satır sayısı - height), genişliğini (sütun sayısı - width) ve BGR (Blue-Green-Red yani Mavi-Yeşil-Kırmızı) kanal sayısını (channels) **print** komutuyla ekrana basıyor.
+komutunu yazabiliriz. Karşımıza çıkan özelliklerden birisi de **shape** yani resmin şekli (bu bizim **çok sık** kullanacağımız bir özellik - **FİNAL SINAVINDA KARŞIMIZA ÇIKACAK**). Aşağıdaki kod resmin **yüksekliğini** (height), **genişliğini** (width) ve BGR (Blue-Green-Red yani Mavi-Yeşil-Kırmızı) kanal sayısını (channels) **print** komutuyla ekrana basıyor. Burada yükseklik satır sayısına, genişlik sütun sayısına eşit. Aşağıdaki kod satırında **resim.shape[0]** ve **resim.shape[1]** komutları sırasıyla resmin yükseklik ve genişliğini piksel cinsinden bir sayı olarak ekrana basıyor. **FİNAL SINAVINDA ÇIKACAK** 
 
 ```
 print('yükseklik = %i   genişlik = %i   kanal sayısı = %i' %(resim.shape[0], resim.shape[1], resim.shape[2]))
 ```
 
-Aşağıdaki videoyu izleyerek yukarıda anlatılan kodu **Jupyter Notebook**'da gerçekleyebilirsiniz.
+Aşağıdaki videoyu izleyerek yukarıda bir kısmı açıklanan ve tamamı aşağıda verilen kodu **Jupyter Notebook**'da gerçekleyebilirsiniz.
 [![IMAGE ALT TEXT HERE](figure/imread_puttext_resize_imwrite.jpg)](https://youtu.be/2bLhk2sV_jk)
 
 ```
