@@ -432,6 +432,7 @@ Bugüne kadar gri tonlu (İng. gray scale) ve RGB diye adlandırılan Red-Green-
 RGB uzayı her ne kadar renkli bir uzay olsa da görüntü işleme alanında çalışan uzmanlar renge göre nesne tespiti/takibi yapacakları (yani görüntüyü bir sinyal olarak kabul edecek olursak bu sinyaldeki renk **özelliğine**<sup>1</sup> bakacakları) zaman daha uygun/kolay olduğundan dolayı renk tanımlarını RGB uzayında değil de HSV uzayı denilen başka bir renk uzayında yapıyorlar [8]. HSV uzayı RGB uzayı gibi kartezyen bir koordinat sisteminde değil de *Şekil 2*'de görüldüğü gibi silindirik bir koordinat sisteminde temsil ediliyor.
 
 <img src="https://929687.smushcdn.com/2407837/wp-content/uploads/2021/04/opencv_color_spaces_hsv_cylinder.png?lossy=1&strip=1&webp=1" alt="HSV color space" height="360"/>
+
 *Şekil 2*: HSV renk uzayı.
 
 Web kamerasındandan gelen görüntüleri ard arda yakalamaya başladığımız sonsuz döngüye girince her kareyi gürültüden arındırmak için ilk önce Gaussian bulanıklaştırma filtresinden geçiriyoruz.
